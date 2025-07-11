@@ -3,149 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Euclidean Geometry with Lean 4 - Test</title>
+    <title>Euclidean Geometry with Lean 4 - 2025</title>
     <style>
         body {
-            font-family: 'Computer Modern', serif;
+            font-family: 'Times New Roman', serif;
             line-height: 1.6;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #fafafa;
         }
         
-        .lecture-content {
-            margin-bottom: 100px; /* Space for bottom panel */
-        }
-        
-        .theorem-box {
-            background: #f8f9fa;
-            border-left: 4px solid #007bff;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        
-        .geogebra-container {
-            margin: 20px 0;
+        .header {
             text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
         }
         
-        /* Bottom panel styling */
-        .lean-panel {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50px;
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: normal;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        
+        .instructor-info {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .course-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .course-table th {
             background: #2c3e50;
             color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            transition: height 0.3s ease;
-            z-index: 1000;
+            padding: 15px;
+            text-align: left;
+            font-weight: normal;
+            font-size: 1.1em;
         }
         
-        .lean-panel.expanded {
-            height: 400px;
+        .course-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
         }
         
-        .lean-toggle {
-            background: #3498db;
+        .course-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .lecture-number {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 60px;
+        }
+        
+        .lecture-title {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 5px;
+        }
+        
+        .lecture-description {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        
+        .link-button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 2px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .youtube-link {
+            background-color: #ff4444;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
         }
         
-        .lean-toggle:hover {
-            background: #2980b9;
+        .youtube-link:hover {
+            background-color: #cc0000;
+            color: white;
         }
         
-        .lean-iframe {
-            width: 100%;
-            height: 340px;
-            border: none;
-            margin-top: 10px;
-            display: none;
+        .notes-link {
+            background-color: #3498db;
+            color: white;
         }
         
-        .lean-panel.expanded .lean-iframe {
-            display: block;
+        .notes-link:hover {
+            background-color: #2980b9;
+            color: white;
         }
         
-        .lean-info {
-            font-size: 14px;
+        .coming-soon {
+            background-color: #95a5a6;
+            color: white;
+            cursor: not-allowed;
+        }
+        
+        .resources {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .resources h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .resources ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .resources li {
+            margin: 8px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .resources a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .resources a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 40px;
+            padding: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .course-table {
+                font-size: 0.9em;
+            }
+            
+            .link-button {
+                display: block;
+                margin: 5px 0;
+                text-align: center;
+            }
         }
     </style>
-    <!-- MathJax for mathematical notation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
 </head>
 <body>
-    <div class="lecture-content">
+    <div class="header">
         <h1>Euclidean Geometry with Lean 4</h1>
-        <h2>Lecture 1: Basic Definitions</h2>
-        
-        <p>In this course, we'll prove fundamental theorems in Euclidean geometry using the Lean 4 proof assistant.</p>
-        
-        <div class="theorem-box">
-            <h3>Definition: Point and Line</h3>
-            <p>We begin with the undefined concepts of <em>point</em> and <em>line</em>, related by the incidence relation.</p>
-            <p><strong>Notation:</strong> \(P \in \ell\) means point \(P\) lies on line \(\ell\).</p>
-        </div>
-        
-        <div class="geogebra-container">
-            <h4>Interactive Visualization</h4>
-            <!-- Simple GeoGebra embed - replace with your actual applet -->
-            <iframe src="https://www.geogebra.org/material/iframe/id/17499/width/800/height/400/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" 
-                    width="800" height="400" 
-                    style="border: 0px;">
-            </iframe>
-        </div>
-        
-        <div class="theorem-box">
-            <h3>Axiom 1: Incidence</h3>
-            <p>For any two distinct points, there exists exactly one line containing both points.</p>
-            <p><strong>In Lean:</strong> Click "Show Lean Proof" below to see the formalization.</p>
-        </div>
-        
-        <p>Use the Lean panel at the bottom of the page to explore the formal definitions and work through exercises.</p>
+        <div class="subtitle">A formal approach to classical geometry</div>
+        <div class="subtitle">Spring 2025</div>
     </div>
     
-    <!-- Bottom Lean panel -->
-    <div class="lean-panel" id="leanPanel">
-        <div class="lean-info">
-            <span>Lean 4 Proof Assistant</span>
-        </div>
-        <button class="lean-toggle" onclick="toggleLeanPanel()">Show Lean Proof</button>
-        
-        <iframe class="lean-iframe" id="leanIframe" 
-                src="https://lean.math.hhu.de/?code=-- Euclidean Geometry in Lean 4%0A-- Basic definitions%0A%0Avariable (Point Line : Type)%0Avariable (lies_on : Point → Line → Prop)%0A%0A-- Notation for incidence%0Anotation:50 P " ∈ " ℓ => lies_on P ℓ%0A%0A-- Axiom 1: For any two distinct points, there exists exactly one line%0Aaxiom incidence (P Q : Point) (h : P ≠ Q) : %0A  ∃! ℓ : Line, P ∈ ℓ ∧ Q ∈ ℓ%0A%0A-- Try proving this basic lemma:%0Alemma points_determine_line (P Q : Point) (h : P ≠ Q) :%0A  ∃ ℓ : Line, P ∈ ℓ ∧ Q ∈ ℓ :=%0Asorry%0A%0A#check incidence">
-        </iframe>
+    <div class="instructor-info">
+        <h3>Instructor Information</h3>
+        <p><strong>Professor:</strong> Alex Kontorovich</p>
+        <p><strong>Institution:</strong> Rutgers University</p>
+        <p><strong>Course Description:</strong> This course explores classical Euclidean geometry through a modern lens, 
+        using the Lean 4 proof assistant to formalize definitions, theorems, and proofs. Students will gain deep 
+        understanding of geometric reasoning while learning contemporary approaches to mathematical formalization.</p>
     </div>
-
-    <script>
-        function toggleLeanPanel() {
-            const panel = document.getElementById('leanPanel');
-            const button = document.querySelector('.lean-toggle');
-            
-            if (panel.classList.contains('expanded')) {
-                panel.classList.remove('expanded');
-                button.textContent = 'Show Lean Proof';
-            } else {
-                panel.classList.add('expanded');
-                button.textContent = 'Hide Lean Proof';
-            }
-        }
-        
-        // MathJax configuration
-        window.MathJax = {
-            tex: {
-                inlineMath: [['\\(', '\\)']],
-                displayMath: [['\\[', '\\]']]
-            }
-        };
-    </script>
+    
+    <table class="course-table">
+        <thead>
+            <tr>
+                <th>Lecture</th>
+                <th>Topic & Content</th>
+                <th>Resources</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="lecture-number">01</td>
+                <td>
+                    <div class="lecture-title">Introduction and Axioms</div>
+                    <div class="lecture-description">
+                        Basic concepts: points, lines, and incidence. Euclid's axioms in modern formulation. 
+                        Introduction to Lean 4 and formal mathematics.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button youtube-link">📹 YouTube</a>
+                    <a href="lecture01.html" class="link-button notes-link">📝 Notes</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">02</td>
+                <td>
+                    <div class="lecture-title">Congruence and the First Propositions</div>
+                    <div class="lecture-description">
+                        Triangle congruence, SAS, SSS criteria. Euclid's Propositions I.1-I.8 with formal proofs.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">03</td>
+                <td>
+                    <div class="lecture-title">Parallel Postulate and Its Consequences</div>
+                    <div class="lecture-description">
+                        The fifth postulate, equivalent formulations, and fundamental theorems about parallel lines.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">04</td>
+                <td>
+                    <div class="lecture-title">Area and the Pythagorean Theorem</div>
+                    <div class="lecture-description">
+                        Defining area in Lean, Euclid's proof of the Pythagorean theorem, and related propositions.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">05</td>
+                <td>
+                    <div class="lecture-title">Circles and Inscribed Figures</div>
+                    <div class="lecture-description">
+                        Circle properties, tangent lines, inscribed and circumscribed polygons. Propositions from Book III.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">06</td>
+                <td>
+                    <div class="lecture-title">Proportion and Similarity</div>
+                    <div class="lecture-description">
+                        Theory of proportions, similar triangles, and geometric means. Formalizing Book V concepts.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">07</td>
+                <td>
+                    <div class="lecture-title">Regular Polygons and Constructions</div>
+                    <div class="lecture-description">
+                        Constructible numbers, regular polygons, and the classical construction problems.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">08</td>
+                <td>
+                    <div class="lecture-title">Three-Dimensional Geometry</div>
+                    <div class="lecture-description">
+                        Solid geometry, polyhedra, and volume calculations. Euclid's Books XI-XIII in Lean.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">09</td>
+                <td>
+                    <div class="lecture-title">Modern Perspectives</div>
+                    <div class="lecture-description">
+                        Hilbert's axioms, non-Euclidean geometry, and the role of formal methods in modern mathematics.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="lecture-number">10</td>
+                <td>
+                    <div class="lecture-title">Final Projects and Presentations</div>
+                    <div class="lecture-description">
+                        Student presentations of independent formalization projects and course wrap-up.
+                    </div>
+                </td>
+                <td>
+                    <a href="#" class="link-button coming-soon">📹 Coming Soon</a>
+                    <a href="#" class="link-button coming-soon">📝 Coming Soon</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="resources">
+        <h3>Course Resources</h3>
+        <ul>
+            <li><strong>📚 Primary Text:</strong> <a href="https://mathcs.clarku.edu/~djoyce/java/elements/elements.html">Euclid's Elements (Joyce Edition)</a></li>
+            <li><strong>🔧 Lean 4:</strong> <a href="https://leanprover.github.io/lean4/doc/">Official Lean 4 Documentation</a></li>
+            <li><strong>📖 Mathlib:</strong> <a href="https://leanprover-community.github.io/mathlib4_docs/">Mathlib4 Geometry Documentation</a></li>
+            <li><strong>🎮 Practice:</strong> <a href="https://www.ma.imperial.ac.uk/~buzzard/xena/natural_number_game/">Natural Number Game</a> (Lean Tutorial)</li>
+            <li><strong>💬 Discussion:</strong> <a href="https://leanprover.zulipchat.com/">Lean Zulip Chat</a></li>
+            <li><strong>📺 Background:</strong> <a href="https://www.youtube.com/watch?v=Dp-mQ3HxgDE">3Blue1Brown - Essence of Linear Algebra</a></li>
+        </ul>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 Alex Kontorovich, Rutgers University Mathematics Department</p>
+        <p>Course materials are freely available for educational use</p>
+    </div>
 </body>
 </html>

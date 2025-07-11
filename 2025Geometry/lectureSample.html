@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euclidean Geometry with Lean 4 - Test</title>
+    <style>
+        body {
+            font-family: 'Computer Modern', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .lecture-content {
+            margin-bottom: 100px; /* Space for bottom panel */
+        }
+        
+        .theorem-box {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .geogebra-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        /* Bottom panel styling */
+        .lean-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            transition: height 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .lean-panel.expanded {
+            height: 400px;
+        }
+        
+        .lean-toggle {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .lean-toggle:hover {
+            background: #2980b9;
+        }
+        
+        .lean-iframe {
+            width: 100%;
+            height: 340px;
+            border: none;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .lean-panel.expanded .lean-iframe {
+            display: block;
+        }
+        
+        .lean-info {
+            font-size: 14px;
+        }
+    </style>
+    <!-- MathJax for mathematical notation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+    <div class="lecture-content">
+        <h1>Euclidean Geometry with Lean 4</h1>
+        <h2>Lecture 1: Basic Definitions</h2>
+        
+        <p>In this course, we'll prove fundamental theorems in Euclidean geometry using the Lean 4 proof assistant.</p>
+        
+        <div class="theorem-box">
+            <h3>Definition: Point and Line</h3>
+            <p>We begin with the undefined concepts of <em>point</em> and <em>line</em>, related by the incidence relation.</p>
+            <p><strong>Notation:</strong> \(P \in \ell\) means point \(P\) lies on line \(\ell\).</p>
+        </div>
+        
+        <div class="geogebra-container">
+            <h4>Interactive Visualization</h4>
+            <!-- Simple GeoGebra embed - replace with your actual applet -->
+            <iframe src="https://www.geogebra.org/material/iframe/id/17499/width/800/height/400/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" 
+                    width="800" height="400" 
+                    style="border: 0px;">
+            </iframe>
+        </div>
+        
+        <div class="theorem-box">
+            <h3>Axiom 1: Incidence</h3>
+            <p>For any two distinct points, there exists exactly one line containing both points.</p>
+            <p><strong>In Lean:</strong> Click "Show Lean Proof" below to see the formalization.</p>
+        </div>
+        
+        <p>Use the Lean panel at the bottom of the page to explore the formal definitions and work through exercises.</p>
+    </div>
+    
+    <!-- Bottom Lean panel -->
+    <div class="lean-panel" id="leanPanel">
+        <div class="lean-info">
+            <span>Lean 4 Proof Assistant</span>
+        </div>
+        <button class="lean-toggle" onclick="toggleLeanPanel()">Show Lean Proof</button>
+        
+        <iframe class="lean-iframe" id="leanIframe" 
+                src="https://lean.math.hhu.de/?code=-- Euclidean Geometry in Lean 4%0A-- Basic definitions%0A%0Avariable (Point Line : Type)%0Avariable (lies_on : Point → Line → Prop)%0A%0A-- Notation for incidence%0Anotation:50 P " ∈ " ℓ => lies_on P ℓ%0A%0A-- Axiom 1: For any two distinct points, there exists exactly one line%0Aaxiom incidence (P Q : Point) (h : P ≠ Q) : %0A  ∃! ℓ : Line, P ∈ ℓ ∧ Q ∈ ℓ%0A%0A-- Try proving this basic lemma:%0Alemma points_determine_line (P Q : Point) (h : P ≠ Q) :%0A  ∃ ℓ : Line, P ∈ ℓ ∧ Q ∈ ℓ :=%0Asorry%0A%0A#check incidence">
+        </iframe>
+    </div>
+
+    <script>
+        function toggleLeanPanel() {
+            const panel = document.getElementById('leanPanel');
+            const button = document.querySelector('.lean-toggle');
+            
+            if (panel.classList.contains('expanded')) {
+                panel.classList.remove('expanded');
+                button.textContent = 'Show Lean Proof';
+            } else {
+                panel.classList.add('expanded');
+                button.textContent = 'Hide Lean Proof';
+            }
+        }
+        
+        // MathJax configuration
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+</body>
+</html>

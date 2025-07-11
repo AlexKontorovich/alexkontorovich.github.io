@@ -544,4 +544,128 @@
                             </div>
                         </div>
                         
-                        <button class="toggle-button" data-lean-code="-- Proposition 1: Construct equilateral triangle%0A-- This is Euclid's very first proposition!%0A%0Avariable (Point Line Circle : Type)%0Avariable (lies_on_line : Point → Line → Prop)%0Avariable (lies_on_circle : Point → Circle → Prop)%0Avariable (distance : Point → Point → ℝ)%0A%0A-- Given: A line segment AB%0Avariable (A B : Point) (AB : Line)%0Avariable (hA : lies_on_line A AB) (hB : lies_on_line B AB)%0A%0A-- Goal: Construct point C such that triangle ABC is equilateral%0A-- (meaning all sides equal)%0A%0Adef is_equilateral_triangle (A B C : Point) : Prop :=%0A  distance A B = distance B C ∧ %0A  distance B C = distance C A%0A%0A-- The construction uses two circles:%0A-- Circle 1: centered at A with radius AB%0A-- Circle 2: centered at B with radius BA%0A-- Point C is where they intersect%0A%0Atheorem euclid_prop1 : %0A  ∃ C : Point,
+                        <button class="toggle-button" data-lean-code="-- Proposition 1: Construct equilateral triangle%0A-- This is Euclid's very first proposition!%0A%0Avariable (Point Line Circle : Type)%0Avariable (lies_on_line : Point → Line → Prop)%0Avariable (lies_on_circle : Point → Circle → Prop)%0Avariable (distance : Point → Point → ℝ)%0A%0A-- Given: A line segment AB%0Avariable (A B : Point) (AB : Line)%0Avariable (hA : lies_on_line A AB) (hB : lies_on_line B AB)%0A%0A-- Goal: Construct point C such that triangle ABC is equilateral%0A-- (meaning all sides equal)%0A%0Adef is_equilateral_triangle (A B C : Point) : Prop :=
+  distance A B = distance B C ∧ 
+  distance B C = distance C A
+
+-- The construction uses two circles:
+-- Circle 1: centered at A with radius AB
+-- Circle 2: centered at B with radius BA
+-- Point C is where they intersect
+
+theorem euclid_prop1 : 
+  ∃ C : Point, is_equilateral_triangle A B C := by
+  sorry  -- This requires the postulates about circle construction
+
+-- Try to complete this proof using Euclid's postulates!
+-- Hint: Use Postulate 3 (circle construction) twice
+-- Then show the intersection point C works
+
+#check euclid_prop1">
+                            <span class="toggle-icon">▲</span> Explore in Lean: Proposition 1
+                        </button>
+                    </section>
+                    
+                </main>
+            </div>
+        </div>
+        
+        <!-- Resizable divider -->
+        <div class="divider" id="divider"></div>
+        
+        <!-- Bottom pane with fixed Lean frame -->
+        <div class="bottom-pane" id="bottom-pane">
+            <!-- iframe will be inserted here when button is clicked -->
+        </div>
+    </div>
+    
+    <script>
+        // === DIVIDER FUNCTIONALITY ===
+        const divider = document.getElementById('divider');
+        const topPane = document.querySelector('.top-pane');
+        const bottomPane = document.getElementById('bottom-pane');
+        const container = document.querySelector('.split-container');
+        
+        let isDragging = false;
+        
+        divider.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+            e.preventDefault();
+            document.body.style.userSelect = 'none';
+        });
+        
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+            
+            const containerRect = container.getBoundingClientRect();
+            const containerHeight = containerRect.height;
+            const yPos = e.clientY - containerRect.top;
+            const percentage = Math.max(20, Math.min(80, (yPos / containerHeight) * 100));
+            
+            topPane.style.flex = 'none';
+            topPane.style.height = `${percentage}%`;
+            bottomPane.style.height = `${100 - percentage}%`;
+        }
+        
+        function handleMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.body.style.userSelect = '';
+        }
+        
+        // === TOGGLE BUTTON FUNCTIONALITY ===
+        const toggleButtons = document.querySelectorAll('.toggle-button');
+        
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const leanCode = this.getAttribute('data-lean-code');
+                
+                container.classList.toggle('bottom-hidden');
+                
+                if (container.classList.contains('bottom-hidden')) {
+                    toggleButtons.forEach(btn => {
+                        const originalText = btn.getAttribute('data-original-text') || btn.innerHTML.split('</span> ')[1];
+                        btn.innerHTML = '<span class="toggle-icon">▲</span> ' + originalText;
+                    });
+                } else {
+                    toggleButtons.forEach(btn => {
+                        const originalText = btn.innerHTML.split('</span> ')[1];
+                        btn.setAttribute('data-original-text', originalText);
+                        btn.innerHTML = '<span class="toggle-icon">▼</span> Close Lean Editor';
+                    });
+                    
+                    // Reset to default sizes
+                    topPane.style.flex = '1';
+                    topPane.style.height = '';
+                    bottomPane.style.height = '40vh';
+                    
+                    // Create iframe with Lean code
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'lean-frame';
+                    iframe.src = `https://live.lean-lang.org/#code=${leanCode}`;
+                    iframe.setAttribute('allow', 'clipboard-read; clipboard-write');
+                    
+                    bottomPane.innerHTML = '';
+                    bottomPane.appendChild(iframe);
+                }
+            });
+        });
+        
+        // === MATHJAX CONFIGURATION ===
+        window.MathJax = {
+            tex: {
+                inlineMath: [[', '], ['\\(', '\\)']],
+                displayMath: [['$', '$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+</body>
+</html>

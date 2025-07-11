@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 1: Introduction and Axioms - Euclidean Geometry with Lean 4</title>
+    
+    <!-- Math typesetting with MathJax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    
+    <style>
+        html, body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Split-pane layout */
+        .split-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        /* Add the bottom-hidden class by default */
+        .split-container.bottom-hidden .bottom-pane {
+            display: none;
+        }
+        
+        .split-container.bottom-hidden .divider {
+            display: none;
+        }
+        
+        .split-container.bottom-hidden .top-pane {
+            height: 100% !important;
+        }
+        
+        /* Top pane with scrollable content */
+        .top-pane {
+            display: flex;
+            overflow: hidden;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        /* Bottom pane with fixed Lean frame */
+        .bottom-pane {
+            width: 100%;
+            height: 40vh;
+            position: relative;
+        }
+        
+        /* Resizable divider */
+        .divider {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            cursor: ns-resize;
+            position: relative;
+        }
+        
+        .divider:hover {
+            background-color: #bbb;
+        }
+        
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            width: 30px;
+            height: 2px;
+            background-color: #888;
+            transform: translateX(-50%);
+        }
+        
+        /* Navigation */
+        nav {
+            width: 280px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+            flex-shrink: 0;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        nav h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        nav li {
+            margin-bottom: 8px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        nav a:hover {
+            background-color: #e3f2fd;
+        }
+        
+        /* Main content area */
+        .content-scroll {
+            flex-grow: 1;
+            height: 100%;
+            overflow-y: auto;
+            padding: 0 30px;
+        }
+        
+        main {
+            max-width: 900px;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: #34495e;
+        }
+        
+        /* Styled boxes for different content types */
+        .historical-note {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .historical-note h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .definition {
+            background-color: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .definition h4 {
+            margin-top: 0;
+            color: #155724;
+        }
+        
+        .postulate {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .postulate h4 {
+            margin-top: 0;
+            color: #856404;
+        }
+        
+        .theorem-proof {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .homework {
+            background-color: #f1f3f4;
+            border-left: 4px solid #6c757d;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .homework h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+        
+        /* GeoGebra container */
+        .geogebra-container {
+            margin: 25px 0;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .geogebra-container h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        /* Lean frame */
+        .lean-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Toggle button styling */
+        .toggle-button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        .toggle-button:hover {
+            background: linear-gradient(135deg, #2980b9, #21618c);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+        
+        .bottom-hidden .toggle-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Math formatting */
+        .math-inline {
+            font-style: italic;
+        }
+        
+        /* Back to home link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .top-pane {
+                flex-direction: column;
+            }
+            
+            nav {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+            
+            .content-scroll {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container bottom-hidden">
+        <!-- Top pane with scrollable content -->
+        <div class="top-pane">
+            <nav>
+                <h2>Lecture 1 Contents</h2>
+                <ul>
+                    <li><a href="#intro">What is Mathematics?</a></li>
+                    <li><a href="#history">Historical Perspective</a></li>
+                    <li><a href="#ybc7289">YBC 7289: Ancient √2</a></li>
+                    <li><a href="#plimpton">Plimpton 322</a></li>
+                    <li><a href="#thales">Thales's Theorem</a></li>
+                    <li><a href="#axioms">The Need for Axioms</a></li>
+                    <li><a href="#euclid">Euclid's Elements</a></li>
+                    <li><a href="#definitions">Definitions</a></li>
+                    <li><a href="#postulates">Postulates</a></li>
+                    <li><a href="#homework">Homework</a></li>
+                </ul>
+            </nav>
+            
+            <div class="content-scroll">
+                <main>
+                    <a href="index.html" class="back-link">← Back to Course Home</a>
+                    
+                    <h1>Lecture 1: Introduction and Axioms</h1>
+                    
+                    <section id="intro">
+                        <h2>What is Mathematics at its Core?</h2>
+                        <ul>
+                            <li>Manipulation of numbers and variables</li>
+                            <li>Extending logic to its limits (and sometimes beyond...)</li>
+                            <li>Abstract representation of the real world</li>
+                            <li><strong>Search/discovery (invention?) of Universal Absolute Truths</strong></li>
+                        </ul>
+                    </section>
+                    
+                    <section id="history">
+                        <div class="historical-note">
+                            <h3>Small History Lesson</h3>
+                            <p>Mathematics has ancient roots, but what distinguished early mathematical objects from mere engineering tools was their pursuit of abstract truth beyond practical necessity.</p>
+                        </div>
+                    </section>
+                    
+                    <section id="ybc7289">
+                        <h2>YBC 7289: The Ancient √2</h2>
+                        
+                        <div class="geogebra-container">
+                            <h4>Interactive: YBC 7289 Tablet Reconstruction</h4>
+                            <iframe src="https://www.geogebra.org/calculator/m2crcgzf?embed" 
+                                    width="800" height="500" 
+                                    allowfullscreen 
+                                    style="border: 1px solid #e3e3e3;">
+                            </iframe>
+                            <p><em>Drag the point to see how √2 relates to the diagonal of a unit square</em></p>
+                        </div>
+                        
+                        <p><strong>Mystery:</strong> You find this ball of clay in the ground, dated to ~2000 BCE. What is it, what does it mean?</p>
+                        
+                        <p>Babylonians/Mesopotamians used base 60:</p>
+                        <p>$$1 + \frac{24}{60} + \frac{51}{3600} + \frac{10}{60^3} \approx 1.414212$$</p>
+                        
+                        <p>This is $\sqrt{2} \approx 1.414213$ to VERY many decimal places. This accuracy is within one part in a million—way more than necessary for ANY engineering/economic application.</p>
+                        
+                        <p><strong>This to me distinguishes this object as being mathematics as opposed to engineering. It has no practical application.</strong></p>
+                        
+                        <p><strong>Why $\sqrt{2}$?</strong> The picture shows the hypotenuse of a square, so if we use the side of the square as a unit, then by the Pythagorean (~500 BCE) Theorem, the diagonal is $\sqrt{2}$.</p>
+                        
+                        <button class="toggle-button" data-lean-code="-- Ancient Babylonian mathematics: computing √2%0A-- This shows the modern formalization of their discovery%0A%0Aimport Mathlib.Data.Real.Sqrt%0Aimport Mathlib.Data.Real.Basic%0A%0A-- The Babylonian approximation in base 60%0Adef babylonian_sqrt2 : ℚ := 1 + 24/60 + 51/3600 + 10/216000%0A%0A-- Convert to decimal for comparison%0A#eval (babylonian_sqrt2 : Float)%0A%0A-- The actual value we're approximating%0Anoncomputable def actual_sqrt2 : ℝ := Real.sqrt 2%0A%0A-- In Lean, we can state the geometric relationship%0Atheorem unit_square_diagonal (a : ℝ) (ha : a > 0) :%0A  let square_side := a%0A  let diagonal := Real.sqrt (a^2 + a^2)%0A  diagonal = a * Real.sqrt 2 := by%0A  simp [Real.sqrt_mul, Real.sqrt_sq (by linarith : a ≥ 0)]%0A  ring%0A%0A-- The Babylonians discovered this relationship 4000 years ago!%0A#check unit_square_diagonal">
+                            <span class="toggle-icon">▲</span> Explore in Lean: Ancient √2 Discovery
+                        </button>
+                    </section>
+                    
+                    <section id="plimpton">
+                        <h2>Plimpton 322: Pythagorean Triples</h2>
+                        
+                        <p>Another ancient object (also from ~2000BCE): <strong>Plimpton 322</strong></p>
+                        <p>This contains huge integer solutions to the Pythagorean equation $x^2 + y^2 = z^2$.</p>
+                        
+                        <div class="geogebra-container">
+                            <h4>Interactive: Pythagorean Triples</h4>
+                            <iframe src="https://www.geogebra.org/calculator/uvcdjfmf?embed" 
+                                    width="800" height="500" 
+                                    allowfullscreen 
+                                    style="border: 1px solid #e3e3e3;">
+                            </iframe>
+                            <p><em>Explore some of the Pythagorean triples found on Plimpton 322</em></p>
+                        </div>
+                        
+                        <p><strong>What these ancient objects are "missing" to be Mathematics (as we now understand it) is: PROOF</strong></p>
+                        
+                        <button class="toggle-button" data-lean-code="-- Pythagorean triples from Plimpton 322%0A-- Some of the integer solutions the Babylonians found%0A%0Aimport Mathlib.Data.Nat.Basic%0A%0A-- Some famous Pythagorean triples from the tablet%0Aexample : 3^2 + 4^2 = 5^2 := by norm_num%0Aexample : 5^2 + 12^2 = 13^2 := by norm_num%0Aexample : 8^2 + 15^2 = 17^2 := by norm_num%0Aexample : 20^2 + 21^2 = 29^2 := by norm_num%0Aexample : 119^2 + 120^2 = 169^2 := by norm_num%0A%0A-- General definition of Pythagorean triple%0Adef isPythagoreanTriple (a b c : ℕ) : Prop :=%0A  a^2 + b^2 = c^2%0A%0A-- The Babylonians found these without proof%0A-- Today we can PROVE they work:%0Atheorem check_triple_3_4_5 : isPythagoreanTriple 3 4 5 := by%0A  simp [isPythagoreanTriple]%0A  norm_num%0A%0A-- What the ancients lacked: systematic proof that infinitely many exist">
+                            <span class="toggle-icon">▲</span> Explore in Lean: Pythagorean Triples
+                        </button>
+                    </section>
+                    
+                    <section id="thales">
+                        <h2>Thales's Theorem: The First Proof</h2>
+                        
+                        <p>There came a time when people no longer accepted mere "Fact" as the Truth—they wanted a pair <strong>(Truth, Proof)</strong>.</p>
+                        
+                        <p>Earliest (known today) proof is by <strong>Thales ~600BCE</strong>:</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>Thales's Theorem</h4>
+                            <p>Take a circle, draw its diameter, and put any other point on the circle.</p>
+                            
+                            <div class="geogebra-container">
+                                <iframe src="https://www.geogebra.org/calculator/azsmt2qr?embed" 
+                                        width="700" height="450" 
+                                        allowfullscreen 
+                                        style="border: 1px solid #e3e3e3;">
+                                </iframe>
+                                <p><em>Move point C around the circle and observe that ∠BCD is always 90°</em></p>
+                            </div>
+                            
+                            <p><strong>Question:</strong> How does the angle ∠BCD depend on C? How does it change as C moves around?</p>
+                            <p><strong>Observation:</strong> Every time we measure it, the angle is 90°.</p>
+                            <p>If we were Babylonians, just stating that fact might be satisfactory. But today that seems deficient for UNDERSTANDING.</p>
+                            
+                            <h4>How can we actually PROVE this theorem?</h4>
+                            
+                            <p><strong>IDEA:</strong> Try drawing a line from the center A to C.</p>
+                            <p><strong>Another idea:</strong> Suppose that we know that the sum of interior angles in a triangle add up to 180°.</p>
+                            
+                            <p><strong>PROOF:</strong> ∠ADC = ∠ACD = x (Why? Because AD and AC are both radii of the circle, and hence equal. So triangle ADC is isosceles, and hence base angles are equal.) Same for ABC, that is, ∠ACB = ∠ABC = y.</p>
+                            
+                            <p>But: ∠D + ∠B + (∠DCA + ∠ACB) = 180° = x + y + (x + y) = 2(x + y). Therefore ∠C = x + y = 90°. QED</p>
+                        </div>
+                        
+                        <button class="toggle-button" data-lean-code="-- Thales's Theorem: First recorded geometric proof%0A-- Angle inscribed in semicircle is always 90 degrees%0A%0Aimport Mathlib.Geometry.Euclidean.Basic%0Aimport Mathlib.Geometry.Euclidean.Angle%0A%0A-- We'll work in the Euclidean plane%0Avariable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V] [Fact (finrank ℝ V = 2)]%0A%0A-- For now, let's state what we want to prove%0A-- (Full formalization requires more setup)%0A%0A/- Thales's Theorem (statement):%0A   If B and D are endpoints of a diameter of a circle,%0A   and C is any other point on the circle,%0A   then angle BCD = 90° -/%0A%0A-- Key insight from the proof:%0A-- Isosceles triangles have equal base angles%0Alemma isosceles_base_angles (A B C : V) %0A  (h : ‖A - C‖ = ‖A - B‖) : %0A  -- angle ACB = angle ABC%0A  sorry  -- This would require angle definitions%0A%0A-- The power of PROOF vs mere observation:%0A-- Babylonians: \"We measured many examples, angle is always 90°\"%0A-- Greeks: \"Here's WHY it must ALWAYS be 90° for ANY circle\"">
+                            <span class="toggle-icon">▲</span> Explore in Lean: Thales's Theorem
+                        </button>
+                    </section>
+                    
+                    <section id="axioms">
+                        <h2>The Need for Axioms</h2>
+                        
+                        <p><strong>Here's a problem:</strong> If every fact is proved using other facts, why are those facts true? And so on FOREVER. You get an infinite recursion of facts, and then how do you know you're not proving nonsense?</p>
+                        
+                        <p><strong>Example:</strong> Suppose in proving a fact, we used another fact, namely that 0 = 1. (That's false—a contradiction.)</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>Dangerous Example</h4>
+                            <p>Let's "prove" the Riemann Hypothesis:</p>
+                            <p><strong>Proof:</strong> Assume it's not true. 0 = 1 gives a contradiction. Therefore RH is true. QED.</p>
+                        </div>
+                        
+                        <p>Our whole house of cards can come tumbling down if it turns out that we used facts that depend on other facts that depend on other facts that depend on 0 = 1. (How do we tell that we haven't hidden a false statement in this infinite recursion?)</p>
+                        
+                        <p><strong>We have to START with something that we Declare to be True. Those are called the Axioms.</strong></p>
+                        
+                        <p>We actually need a triplet: <strong>(Axioms on which to build a theory, Fact to prove, Proof)</strong>.</p>
+                    </section>
+                    
+                    <section id="euclid">
+                        <h2>Euclid's Elements</h2>
+                        
+                        <p><strong>What document is the ancient epitome of this ideal?</strong> Euclid's Elements.</p>
+                        <p><a href="http://aleph0.clarku.edu/~djoyce/java/elements/elements.html" target="_blank">Joyce's Edition of Euclid's Elements</a></p>
+                    </section>
+                    
+                    <section id="definitions">
+                        <h2>Euclid's Definitions</h2>
+                        
+                        <div class="definition">
+                            <h4>Definition 1</h4>
+                            <p>A <em>point</em> is that which has no part.</p>
+                        </div>
+                        
+                        <div class="definition">
+                            <h4>Definition 2</h4>
+                            <p>A <em>line</em> is breadthless length. [By line, he means "curve"]</p>
+                        </div>
+                        
+                        <div class="definition">
+                            <h4>Definition 4</h4>
+                            <p>A <em>straight line</em> is a line which lies evenly with the points on itself.</p>
+                        </div>
+                        
+                        <div class="definition">
+                            <h4>Definition 10</h4>
+                            <p>When a straight line standing on a straight line makes the adjacent angles equal to one another, each of the equal angles is <em>right</em>, and the straight line standing on the other is called a <em>perpendicular</em> to that on which it stands.</p>
+                        </div>
+                        
+                        <div class="definition">
+                            <h4>Definition 15</h4>
+                            <p>A <em>circle</em> is a plane figure contained by one line such that all the straight lines falling upon it from one point among those lying within the figure equal one another.</p>
+                        </div>
+                        
+                        <div class="definition">
+                            <h4>Definition 23</h4>
+                            <p><em>Parallel</em> straight lines are straight lines which, being in the same plane and being produced indefinitely in both directions, do not meet one another in either direction.</p>
+                        </div>
+                    </section>
+                    
+                    <section id="postulates">
+                        <h2>Euclid's Postulates</h2>
+                        
+                        <div class="postulate">
+                            <h4>Postulate 1</h4>
+                            <p>To draw a straight line from any point to any point.</p>
+                        </div>
+                        
+                        <div class="postulate">
+                            <h4>Postulate 2</h4>
+                            <p>To produce a finite straight line continuously in a straight line. [I.e. if you've drawn a finite segment, you can always extend it a little further]</p>
+                        </div>
+                        
+                        <div class="postulate">
+                            <h4>Postulate 3</h4>
+                            <p>To describe a circle with any center and radius. [compass!]</p>
+                        </div>
+                        
+                        <div class="postulate">
+                            <h4>Postulate 4</h4>
+                            <p>That all right angles equal one another.</p>
+                        </div>
+                        
+                        <div class="postulate">
+                            <h4>Postulate 5 (The Parallel Postulate)</h4>
+                            <p>That, if a straight line falling on two straight lines makes the interior angles on the same side less than two right angles, the two straight lines, if produced indefinitely, meet on that side on which are the angles less than the two right angles.</p>
+                        </div>
+                        
+                        <button class="toggle-button" data-lean-code="-- Euclid's axiomatization in modern Lean%0A-- Building geometry from the ground up%0A%0A-- Basic types%0Avariable (Point Line : Type)%0A%0A-- Incidence relation%0Avariable (lies_on : Point → Line → Prop)%0Anotation:50 P \" ∈ \" ℓ => lies_on P ℓ%0A%0A-- Distance and angle measures%0Avariable (distance : Point → Point → ℝ)%0Avariable (angle : Point → Point → Point → ℝ)%0A%0A-- Postulate 1: Can draw line between any two points%0Aaxiom postulate1 (A B : Point) (h : A ≠ B) : %0A  ∃! ℓ : Line, A ∈ ℓ ∧ B ∈ ℓ%0A%0A-- Postulate 3: Can draw circle with any center and radius%0Aaxiom postulate3 (center : Point) (radius : ℝ) (hr : radius > 0) :%0A  ∃ (circle_points : Set Point), %0A    ∀ P ∈ circle_points, distance center P = radius%0A%0A-- Postulate 4: All right angles are equal%0Aaxiom postulate4 (A B C D E F : Point) :%0A  (angle A B C = 90) → (angle D E F = 90) → %0A  (angle A B C = angle D E F)%0A%0A-- These axioms let us PROVE theorems instead of just observing!">
+                            <span class="toggle-icon">▲</span> Explore in Lean: Euclid's Axioms
+                        </button>
+                    </section>
+                    
+                    <section id="homework">
+                        <div class="homework">
+                            <h4>Homework</h4>
+                            <p><strong>Prove Proposition 1:</strong> To construct an equilateral triangle on a given finite straight line.</p>
+                            <p>You may want to use <a href="https://www.geogebra.org/classic?lang=en" target="_blank">GeoGebra</a> to help you "see" things, but your solution should be an argument on paper.</p>
+                            
+                            <div class="geogebra-container">
+                                <h4>Interactive: Try the Construction</h4>
+                                <iframe src="https://www.geogebra.org/calculator/qhdt3crc?embed" 
+                                        width="700" height="450" 
+                                        allowfullscreen 
+                                        style="border: 1px solid #e3e3e3;">
+                                </iframe>
+                                <p><em>Try to construct an equilateral triangle on the given line segment AB</em></p>
+                            </div>
+                        </div>
+                        
+                        <button class="toggle-button" data-lean-code="-- Proposition 1: Construct equilateral triangle%0A-- This is Euclid's very first proposition!%0A%0Avariable (Point Line Circle : Type)%0Avariable (lies_on_line : Point → Line → Prop)%0Avariable (lies_on_circle : Point → Circle → Prop)%0Avariable (distance : Point → Point → ℝ)%0A%0A-- Given: A line segment AB%0Avariable (A B : Point) (AB : Line)%0Avariable (hA : lies_on_line A AB) (hB : lies_on_line B AB)%0A%0A-- Goal: Construct point C such that triangle ABC is equilateral%0A-- (meaning all sides equal)%0A%0Adef is_equilateral_triangle (A B C : Point) : Prop :=%0A  distance A B = distance B C ∧ %0A  distance B C = distance C A%0A%0A-- The construction uses two circles:%0A-- Circle 1: centered at A with radius AB%0A-- Circle 2: centered at B with radius BA%0A-- Point C is where they intersect%0A%0Atheorem euclid_prop1 : %0A  ∃ C : Point,

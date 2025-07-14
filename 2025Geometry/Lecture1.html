@@ -473,7 +473,7 @@
                             </div>
                         <p>The interactive above shows a circle centered at A, with diameter BD, and a random point C on the circle. </p>
 <p><strong>The Question:</strong> How does the angle ∠BCD depend on the position of C? What happens as C moves around the circle?</p>
-                            <p><strong>Observation:</strong> Every time we measure the angle, we find it equals 90°.</p>
+                            <p><strong>Observation:</strong> Every time we measure the angle, we find it equals 90°! But <strong>why</strong> does that happen?</p>
                             <p>If we were ancient Babylonians, simply stating this observed fact might have been sufficient. But for true mathematical understanding, this feels inadequate. We need to know <em>why</em> this is always true.</p>
                         <p>To the rescue comes <strong>Thales of Miletus (c. 624-546 BCE)</strong>, with the earliest (currently known) proof:</p>
                         
@@ -487,7 +487,7 @@
                             
                             <h4>The Proof</h4>
 
-<p><strong>Key Insight:</strong> Draw a line from the center A of the circle to point C.</p>
+<p><strong>Key Insight:</strong> [Proofs often contain a surprising idea (or several such), whose origins seem supernatural, which, once stated, unlock the rest of the argument!]  Draw a line from the center A of the circle to point C.</p>
 <iframe src="https://www.geogebra.org/geometry/mn2dn8na?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
 
 <div class="two-column-proof">
@@ -533,7 +533,7 @@
     
     <div class="proof-step">
         <div class="statement">8. ∠DCB = ∠DCA + ∠ACB = x + y</div>
-        <div class="reason">Angle addition postulate</div>
+        <div class="reason">Angle addition</div>
     </div>
     
     <div class="proof-step">
@@ -561,29 +561,28 @@
         <div class="reason">Substitution (steps 8, 12)</div>
     </div>
 </div>
-                        </div>
+                        <p> QED = Quod Erat Demonstrandum = "As was to be demonstrated" = "Mic drop"</p>
                         <p> Thus the ancient Greeks gave birth to the notion of a Proof, which must accomplany any claimed Fact! </p>
+                        <p> But wait. In Step 4, we said that base angles of isosceles triangles are equal. Why is that true? That fact, too, needs its own proof. Same with Step 9, that the angles in a triangle add to 180°; why is that true? </p>
+                        <p><strong>A Fundamental Problem:</strong> If every mathematical fact must be proved using other facts, then why are those supporting facts true? This leads to an infinite recursion—we would need to prove facts using other facts, which themselves require proof, and so on forever!</p>
+                        <p>This infinite chain of required proofs creates a serious logical problem. How can we be certain that somewhere in this endless chain, we haven't accidentally used a false statement?</p>
                     </section>
                     
                     <section id="axioms">
                         <h2>The Need for Axioms</h2>
                         
-                        <p><strong>A Fundamental Problem:</strong> If every mathematical fact must be proved using other facts, then why are those supporting facts true? This leads to an infinite recursion—we would need to prove facts using other facts, which themselves require proof, and so on forever.</p>
-                        
-                        <p>This infinite chain of required proofs creates a serious logical problem. How can we be certain that somewhere in this endless chain, we haven't accidentally used a false statement?</p>
-                        
                         <div class="theorem-proof">
                             <h4>A Dangerous Example</h4>
                             <p>Suppose, buried deep in our chain of reasoning, we had somehow used the "fact" that 0 = 1. This is clearly false, but consider what we could "prove" with it:</p>
-                            <p><strong>False "Proof" of the Riemann Hypothesis:</strong></p>
+                            <p><strong>False "Proof" of the Riemann Hypothesis (whatever the Riemann Hypothesis is! We don't need to know...):</strong></p>
                             <p>Assume the Riemann Hypothesis is false. But we know that 0 = 1, which is a contradiction. Therefore, our assumption must be wrong, so the Riemann Hypothesis must be true. QED.</p>
                         </div>
                         
                         <p>This absurd "proof" illustrates a crucial point: our entire mathematical edifice could collapse if we unknowingly built it upon false foundations. The whole house of cards comes tumbling down if any link in our infinite chain of reasoning contains a false statement.</p>
                         
-                        <p><strong>The Solution:</strong> We must start with something that we consciously declare to be true, without requiring proof. These foundational statements are called <strong>axioms</strong>.</p>
+                        <p><strong>The Solution:</strong> We must start with something that we consciously and conspicuously <strong>declare</strong> to be true, without giving proof. These foundational statements are called <strong>axioms</strong> or <strong>postulates</strong>.</p>
                         
-                        <p>Every mathematical theory requires what we might call a "sacred triplet": <strong>(Axioms on which to build the theory, Facts to prove, Methods of proof)</strong>.</p>
+                        <p>Every mathematical discovery now requires what we might call a "sacred triplet": <strong>(Axioms on which the theory is being built, Fact to be established, Proof)</strong>.</p>
                     </section>
                     
                     <section id="euclid">
@@ -591,9 +590,10 @@
                         
                         <p><strong>What document represents the ancient epitome of this axiomatic ideal?</strong> The answer is Euclid's <em>Elements</em>, written around 300 BCE.</p>
                         
-                        <p>Euclid's <em>Elements</em> is perhaps the most influential mathematics textbook ever written. For over 2000 years, it served as the primary textbook for teaching geometry, and it established the template for how mathematics should be organized: starting with clear definitions and axioms, then building up complex theorems through logical deduction.</p>
+                        <p>Euclid's <em>Elements</em> is perhaps the most influential mathematics textbook ever written. For over 2000 years, it served as the primary textbook for teaching geometry, and it established the template for how mathematics should be organized: starting with clear definitions and axioms, then building up complex theorems through logical deduction.
+                        Until perhaps recently, it was the <strong>second</strong> most published book of all time, after... The Bible. </p>
                         
-                        <p>You can explore the complete text at <a href="http://aleph0.clarku.edu/~djoyce/java/elements/elements.html" target="_blank">David Joyce's edition of Euclid's Elements</a>.</p>
+                        <p>You can explore the complete text at <a href="http://aleph0.clarku.edu/~djoyce/java/elements/elements.html" target="_blank">David Joyce's edition of Euclid's Elements</a>. Let's dive in!</p>
                     </section>
                     
                     <section id="definitions">
@@ -634,7 +634,7 @@
                         <div class="definition">
                             <h4>Definition 23</h4>
                             <p><em>Parallel</em> straight lines are straight lines which, being in the same plane and being produced indefinitely in both directions, do not meet one another in either direction.</p>
-                            <p><small>Parallel lines never intersect, no matter how far they are extended.</small></p>
+                            <p><small>Parallel lines are simply ones which never intersect, no matter how far they are extended.</small></p>
                         </div>
                     </section>
                     
@@ -646,7 +646,7 @@
                         <div class="postulate">
                             <h4>Postulate 1</h4>
                             <p>To draw a straight line from any point to any point.</p>
-                            <p><small>This assumes that any two points can be connected by exactly one straight line.</small></p>
+                            <p><small>This just says that you can use a straight-edge to connect two points with a line segment.</small></p>
                         </div>
                         
                         <div class="postulate">

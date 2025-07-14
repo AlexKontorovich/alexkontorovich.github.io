@@ -383,7 +383,8 @@
                         
                         <p>This extraordinary precision distinguishes this object as <strong>pure mathematics</strong> rather than <strong>engineering</strong>. It represents knowledge pursued for its own sake, with no practical application.</p>
                         
-                        <p><strong>Why √2?</strong> The diagram on the tablet shows the diagonal of a unit square. If we use the side of the square as our unit of measurement, then by what we now call the Pythagorean Theorem (developed around 500 BCE), the diagonal has length $\sqrt{1^2 + 1^2} = \sqrt{2}$.</p>
+                        <p><strong>Why √2?</strong> The diagram on the tablet shows the diagonal of a unit square. If we use the side of the square as our unit of measurement, then by what we now call the Pythagorean Theorem (Pythagoras lived around 500 BCE, 1000 years after this tablet was made...), the diagonal has length <span class="math">\(\sqrt{1^2 + 1^2} = \sqrt{2}\)</span>.</p>
+                        <p>This tablet now lives in New Haven, CT at Yale University. "YBC" stands for the Yale Babylonian Collection.</p>
                     </section>
                     
                     <section id="plimpton">
@@ -398,56 +399,115 @@
                             <p><em>Another ancient object from ~2000 BCE, containing large integer solutions to the Pythagorean equation x² + y² = z²</em></p>
                         </div>
                         
-                        <p>This remarkable tablet contains sophisticated integer solutions to the Pythagorean equation $x^2 + y^2 = z^2$. The Babylonians had discovered what we now call Pythagorean triples, including some with very large numbers that would have required considerable mathematical sophistication to calculate.</p>
+                        <p>This remarkable tablet (which now lives in NYC at Columbia University) contains sophisticated integer solutions to the Pythagorean equation <span class="math">\(x^2 + y^2 = z^2\)</span>. The Babylonians had discovered what we now call Pythagorean triples, including some with very large numbers that would have required considerable mathematical sophistication to calculate.</p>
                         
                         <p><strong>What these ancient objects are "missing" to be Mathematics (as we understand it today) is: PROOF.</strong></p>
                         
                         <p>The Babylonians had discovered mathematical relationships and could calculate with impressive accuracy, but they worked primarily through observation and computation. They found patterns and verified them through examples, but they did not yet have the concept of <strong>proving</strong> that these relationships must always hold.</p>
+                        <p>Why did people eventually come to feel that proof was a necessary component of Understanding?</p>
                     </section>
                     
                     <section id="thales">
                         <h2>Thales's Theorem: The First Proof</h2>
-                        
-                        <p>There came a pivotal moment in human intellectual history when people no longer accepted mere "fact" as sufficient truth. They began to demand a pair: <strong>(Truth, Proof)</strong>.</p>
-                        
-                        <p>The earliest known mathematical proof is attributed to <strong>Thales of Miletus (c. 624-546 BCE)</strong>:</p>
-                        
-                        <div class="theorem-proof">
-                            <h4>Thales's Theorem</h4>
-                            <p><strong>Statement:</strong> If you take any circle, draw a diameter, and choose any other point on the circle, then the angle formed at that point is always a right angle (90°).</p>
-                            
-                            <div class="geogebra-container">
+
+ <div class="geogebra-container">
                                 <h4>Interactive Demonstration</h4>
                                 <iframe src="https://www.geogebra.org/geometry/rszbpxh8?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
                                 </iframe>
                                 <p><em>Move point C around the circle and think about what happens to the angle ∠BCD as C moves?</em></p>
                             </div>
-                            
-                            <p><strong>The Question:</strong> How does the angle ∠BCD depend on the position of C? What happens as C moves around the circle?</p>
+                        <p>The interactive above shows a circle centered at A, with diameter BD, and a random point C on the circle. </p>
+<p><strong>The Question:</strong> How does the angle ∠BCD depend on the position of C? What happens as C moves around the circle?</p>
                             <p><strong>Observation:</strong> Every time we measure the angle, we find it equals 90°.</p>
                             <p>If we were ancient Babylonians, simply stating this observed fact might have been sufficient. But for true mathematical understanding, this feels inadequate. We need to know <em>why</em> this is always true.</p>
+                        <p>To the rescue comes <strong>Thales of Miletus (c. 624-546 BCE)</strong>, with the earliest (currently known) proof:</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>Thales's Theorem</h4>
+                            <p><strong>Statement:</strong> If you take any circle, draw a diameter, and choose any other point on the circle, then the angle formed at that point is always a right angle (90°).</p>
+                            
+                                                   
 
-                            <p> Thus the ancient Greeks gave birth to the notion of a Proof, which must accomplany any claimed Fact! </p>
+                            
                             
                             <h4>The Proof</h4>
-                            
-                            <p><strong>Key Insight:</strong> Draw a line from the center A of the circle to point C.</p>
 
-                            <iframe src="https://www.geogebra.org/geometry/mn2dn8na?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
-                            
-                            <p><strong>Foundation:</strong> We'll assume that the sum of interior angles in any triangle equals 180°.</p>
-                            
-                            <p><strong>Proof:</strong> Since AD and AC are both radii of the circle, they have equal length. Therefore, triangle ADC is isosceles, which means its base angles are equal: ∠ADC = ∠ACD = x.</p>
-                            
-                            <p>Similarly, since AB and AC are both radii, triangle ABC is also isosceles: ∠ACB = ∠ABC = y.</p>
-                            
-                            <p>Now, considering the angles around point C: ∠DCB = ∠DCA + ∠ACB = x + y.</p>
-                            
-                            <p>In triangle BCD, the sum of angles is 180°: ∠BDC + ∠DBC + ∠DCB = 180°.</p>
-                            <p>But ∠BDC = x and ∠DBC = y, so: x + y + (x + y) = 180°.</p>
-                            <p>This gives us: 2(x + y) = 180°, therefore x + y = 90°.</p>
-                            <p>Since ∠DCB = x + y, we conclude that ∠DCB = 90°. QED</p>
+<p><strong>Key Insight:</strong> Draw a line from the center A of the circle to point C.</p>
+<iframe src="https://www.geogebra.org/geometry/mn2dn8na?embed" width="800" height="600" allowfullscreen style="border: 1px solid #e4e4e4;border-radius: 4px;" frameborder="0"></iframe>
+
+<div class="two-column-proof">
+    <div class="proof-header">
+        <div class="statements-header">Statements</div>
+        <div class="reasons-header">Reasons</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">1. Draw radius AC</div>
+        <div class="reason">Construction</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">2. AD = AC (both are radii)</div>
+        <div class="reason">Definition of circle</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">3. Triangle ADC is isosceles</div>
+        <div class="reason">Definition of isosceles triangle</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">4. ∠ADC = ∠ACD = x</div>
+        <div class="reason">Base angles of isosceles triangle are equal</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">5. AB = AC (both are radii)</div>
+        <div class="reason">Definition of circle</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">6. Triangle ABC is isosceles</div>
+        <div class="reason">Definition of isosceles triangle</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">7. ∠ABC = ∠ACB = y</div>
+        <div class="reason">Base angles of isosceles triangle are equal</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">8. ∠DCB = ∠DCA + ∠ACB = x + y</div>
+        <div class="reason">Angle addition postulate</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">9. In triangle BCD: ∠BDC + ∠DBC + ∠DCB = 180°</div>
+        <div class="reason">Sum of angles in a triangle</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">10. x + y + (x + y) = 180°</div>
+        <div class="reason">Substitution (steps 4, 7, 8)</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">11. 2(x + y) = 180°</div>
+        <div class="reason">Simplification</div>
+    </div>
+    
+    <div class="proof-step">
+        <div class="statement">12. x + y = 90°</div>
+        <div class="reason">Division by 2</div>
+    </div>
+    
+    <div class="proof-step conclusion">
+        <div class="statement">13. ∠DCB = 90°</div>
+        <div class="reason">Substitution (steps 8, 12)</div>
+    </div>
+</div>
                         </div>
+                        <p> Thus the ancient Greeks gave birth to the notion of a Proof, which must accomplany any claimed Fact! </p>
                     </section>
                     
                     <section id="axioms">

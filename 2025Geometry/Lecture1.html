@@ -653,33 +653,47 @@
                         </div>
 
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/R%C3%A9gua_e_compasso.jpg" 
-                                 alt="Straightedge and compass" 
+                                 alt="Straight-edge and compass" 
                                  width="400">
 
                         
                         <div class="postulate">
                             <h4>Postulate 2</h4>
                             <p>To produce a finite straight line continuously in a straight line.</p>
-                            <p><small>In other words, if you've already drawn a line segment on the page, you can make it a little longer in either direction; again, this would be accomplished with a straightedge.</small></p>
+                            <p><small>In other words, if you've already drawn a line segment on the page, you can make it a little longer in either direction;  this, too, would be accomplished with a straightedge.</small></p>
                         </div>
                         
                         <div class="postulate">
                             <h4>Postulate 3</h4>
                             <p>To describe a circle with any center and radius.</p>
-                            <p><small>This is the "compass postulate" — Euclid is  can draw a circle centered at any point with any positive radius.</small></p>
+                            <p><small>This is the "compass postulate" — Euclid is stating that you can draw a circle centered at any point with any radius.</small></p>
                         </div>
                         
                         <div class="postulate">
                             <h4>Postulate 4</h4>
                             <p>That all right angles are equal to one another.</p>
-                            <p><small>This ensures that the concept of a right angle is universal and well-defined.</small></p>
+                            <p><small>
+                                Huh? Why is this postulate needed at all? Isn't it obvious that 90° = 90°? Look back at Definition 10: it is a <em>Local</em>
+                                statement, about two lines intersecting perpendicularly.  When two <em>other</em> lines are also perpendicular, maybe their right 
+                                angle measures some other amount?
+                                This postulate ensures that the concept of a right angle is a <em>global</em>,  universal  quantity, the same whereever it may be measured.</small></p>
                         </div>
                         
                         <div class="postulate">
                             <h4>Postulate 5 (The Parallel Postulate)</h4>
                             <p>That, if a straight line falling on two straight lines makes the interior angles on the same side less than two right angles, the two straight lines, if produced indefinitely, meet on that side on which are the angles less than the two right angles.</p>
-                            <p><small>This famous postulate is equivalent to saying that through any point not on a line, there is exactly one parallel line to the given line. It's the most controversial of Euclid's postulates and led to the development of non-Euclidean geometries in the 19th century.</small></p>
                         </div>
+                            <p>
+                                Wait, what?! This last one is a "Postulate"? An obvious fact that requires no further justification?? 
+                                Read again what it's saying: if two lines are crossed by a transversal, so that the sum of interior angles on 
+                                one side add up to less than two right angles, </p>
+                        <iframe src="https://www.geogebra.org/calculator/ygmsmqau?embed" 
+                                        width="700" height="450" 
+                                        allowfullscreen 
+                                        style="border: 1px solid #e3e3e3;">
+                                </iframe>
+                                <p>then if you extend those lines on that side, they will eventually intersect (and hence <em>not</em> be parallel).
+                                    It's the most controversial of Euclid's postulates and thousands of years later led to the development of non-Euclidean geometries... (More later.)</p>
                     </section>
                     
                     <section id="homework">
@@ -687,21 +701,21 @@
                             <h4>Homework Assignment</h4>
                             <p><strong>Prove Euclid's Proposition I.1:</strong> "To construct an equilateral triangle on a given finite straight line."</p>
                             
-                            <p><strong>Instructions:</strong> Using only Euclid's postulates and the method of compass and straightedge construction, prove that it is possible to construct an equilateral triangle using any given line segment as one of its sides.</p>
+                            <p><strong>Instructions:</strong> Using only Euclid's postulates and the method of compass and straightedge construction, prove that, given two points (and the line segment between them), it is possible to construct an equilateral triangle with that segment as one of its sides.</p>
                             
                             <p>You may use <a href="https://www.geogebra.org/classic?lang=en" target="_blank">GeoGebra</a> to help visualize the construction, but your final solution should be a written proof following Euclid's logical structure.</p>
                             
                             <div class="geogebra-container">
                                 <h4>Construction Challenge</h4>
-                                <iframe src="https://www.geogebra.org/calculator/qhdt3crc?embed" 
+                                <iframe src="https://www.geogebra.org/calculator/yyskjrfc?embed" 
                                         width="700" height="450" 
                                         allowfullscreen 
                                         style="border: 1px solid #e3e3e3;">
                                 </iframe>
-                                <p><em>Try to construct an equilateral triangle using the given line segment AB. Use only the tools that Euclid would have had: straightedge (for drawing lines) and compass (for drawing circles).</em></p>
+                                <p><em>Try to construct an equilateral triangle using the given line segment AB. Note: GeoGebra has an "equilateral triangle" tool; but Euclid doesn't! You have to do it just with straightedge and compass.</em></p>
                             </div>
                             
-                            <p><strong>Hint:</strong> Consider what Postulate 3 allows you to do with circles centered at the endpoints of your given line segment.</p>
+                            
                         </div>
                     </section>
                     

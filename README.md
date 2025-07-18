@@ -1,3 +1,3 @@
 # alexkontorovich.github.io
 
-To see the course webpage, head to: https://alexkontorovich.github.io/2025Geometry
+To see the 2025Geometry course webpage, head to: https://alexkontorovich.github.io/2025Geometry

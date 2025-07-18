@@ -648,7 +648,7 @@
                         <div class="impossible-case">
                             <h4>Case 4: Six Equilateral Triangles at Each Vertex</h4>
                             <p><strong>Result:</strong> Impossible as a 3D solid!</p>
-                            <p>Each equilateral triangle has 60° angles at its vertices. Six triangles meeting at a point would create 6 × 60° = 360°, which lies completely flat and creates a tiling of the plane, not a three-dimensional solid.</p>
+                            <p>Each equilateral triangle has 60° angles at its vertices. Six triangles meeting at a point would create 6 × 60° = 360°, which lies completely flat and creates a tiling of the plane that goes on <em>forever</em>, not a finite three-dimensional solid.</p>
                             
                            <div class="image-container">
     <h4>Interactive Triangular Tiling</h4>
@@ -657,22 +657,32 @@
 </div>
                         </div>
                     
-                          <section id="parallel-postulate">
-                        <h2>A Brief Aside: Non-Euclidean Geometry</h2>
                         
                         <div class="impossible-case">
                             <h4>Case 5: Seven or More Triangles at Each Vertex</h4>
-                            <p><strong>Result:</strong> Creates hyperbolic geometry!</p>
-                            <p>Seven triangles would create 7 × 60° = 420° > 360°, which cannot exist in flat space. Such configurations exist in hyperbolic (curved) space.</p>
                             
-                            <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Hyperbolic_triangle_tiling.png/320px-Hyperbolic_triangle_tiling.png" 
-                                     alt="Hyperbolic triangular tiling" 
-                                     width="400">
-                                <p><em>Seven triangles meeting at a vertex in hyperbolic space (represented here as a crocheted model)</em></p>
-                            </div>
+                            <p>Seven triangles would create 7 × 60° = 420° > 360° around each vertex, meaning that the triangles would have to get all "crumpled" up:</p>
+                            
+                           <div class="image-container">
+    <h4>Interactive: 7 equilateral triangles at a point</h4>
+    <div id="hyperbolic-triangles-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • Seven triangles meeting at a vertex create negative curvature</em></p>
+</div>
                         </div>
-                        
+<!-- Add this after the interactive visualization in Case 5 -->
+<div class="image-container">
+    <h4>Hyperbolic Geometry in Physical Form</h4>
+    <a href="https://darlombfiberart.wordpress.com/wp-content/uploads/2013/02/daina-taimina-crocheted-hyperbolic-plane.jpg" target="_blank">
+        <img src="https://darlombfiberart.wordpress.com/wp-content/uploads/2013/02/daina-taimina-crocheted-hyperbolic-plane.jpg" 
+             alt="Crocheted hyperbolic plane showing the characteristic ruffled surface" 
+             width="400"
+             style="cursor: pointer; border: 2px solid #3498db;">
+    </a>
+    <p><em>Click to view: A crocheted model of the hyperbolic plane by mathematician Daina Taimina. The characteristic "ruffled" surface shows how excess curvature manifests in physical space when more than six triangles meet at each vertex.</em></p>
+</div>                        
+                          <section id="parallel-postulate">
+                        <h2>A Brief Aside: Non-Euclidean Geometry</h2>
+
                         <div class="historical-note">
                             <h3>Fast Forward 2000 Years...</h3>
                             <p>For over two millennia, mathematicians were deeply bothered by Euclid's fifth postulate. Unlike the first four postulates, it was much longer and didn't seem "self-evident." It felt more like a theorem—a fact that should be proven from more basic principles—rather than a fundamental assumption.</p>
@@ -682,18 +692,23 @@
                         
                         <p>Their strategy was to prove a cascade of increasingly bizarre consequences, hoping that eventually they would arrive at a logical contradiction that would prove the parallel postulate must be true.</p>
                         
-                        <p><strong>Plot twist:</strong> They never found a definitive contradiction! Instead, they discovered consistent alternative geometries with some very strange properties.</p>
+                        <p><strong>Plot twist:</strong> They never found a definitive contradiction! Instead, they discovered new alternative geometries with some very strange properties.</p>
                         
                         <div class="homework">
                             <h4>Example from Hyperbolic Geometry</h4>
                             <p><strong>Assumption:</strong> The angles in a triangle always add up to <em>less than</em> 180 degrees.</p>
-                            <p><strong>Surprising consequence:</strong> In this geometry, any pair of triangles with the same three angles must be congruent (exactly the same size and shape)!</p>
+                            <p><strong>Surprising consequence:</strong> In this geometry, any pair of triangles with the same three <em>angles</em> must be congruent (exactly the same size and shape)!</p>
                             <p>This is completely different from Euclidean geometry, where triangles can have the same angles but different sizes (similar but not congruent triangles).</p>
                         </div>
                         
-                        <p>The discovery of consistent non-Euclidean geometries was one of the most revolutionary developments in mathematics, showing that Euclid's geometry, while useful, is not the only possible way to understand space.</p>
+                        <p>The discovery of  non-Euclidean geometries was one of the most revolutionary developments in mathematics, showing that Euclid's geometry, while useful, is not the only possible way to understand space.</p>
                         
                         <p>This connects back to our hyperbolic triangle example above: when more than six triangles meet at a vertex, we're no longer in ordinary flat space but in the curved world of hyperbolic geometry.</p>
+
+<p> To understand this topic more deeply, watch this Veritasium video:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lFlu60qs7_4?si=Z4Y4O9n0al_d3woQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
                         
                         <p><strong>Conclusion for triangles in ordinary 3D space:</strong> We get exactly three Platonic solids using triangular faces.</p>
                         
@@ -707,12 +722,12 @@
                             <p><strong>Result:</strong> Cube (6 faces)</p>
                             <p>Each square has 90° angles, so three squares meeting at a vertex create 3 × 90° = 270° < 360°, allowing for a proper three-dimensional corner.</p>
                             
-                            <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Hexahedron.svg/240px-Hexahedron.svg.png" 
-                                     alt="Cube - six square faces" 
-                                     width="300">
-                                <p><em>The cube: 6 square faces, 12 edges, 8 vertices</em></p>
-                            </div>
+<div class="image-container">
+    <h4>Interactive Cube</h4>
+    <div id="cube-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • The cube: 6 square faces, 12 edges, 8 vertices</em></p>
+</div>
+
                         </div>
                         
                         <div class="impossible-case">
@@ -721,12 +736,14 @@
                             <p>Four squares would create 4 × 90° = 360°, which lies flat and tiles the plane (like a checkerboard pattern).</p>
                             
                             <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Square_tiling_uniform_coloring_1.png/320px-Square_tiling_uniform_coloring_1.png" 
-                                     alt="Square tiling of the plane" 
-                                     width="400">
-                                <p><em>Four squares around a vertex create a flat tiling</em></p>
-                            </div>
+    <h4>Interactive Square Tiling</h4>
+    <div id="square-tiling-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • Four squares around each vertex create a flat tiling</em></p>
+</div>
+                            
                         </div>
+                        
+                        <p>And 5 or more squares could only tile the hyperbolic plane, same as triangles.</p>
                         
                         <p><strong>Conclusion for squares:</strong> We get exactly one Platonic solid using square faces.</p>
                     </section>
@@ -734,7 +751,52 @@
                     <section id="pentagon-cases">
                         <h2>Cases with Pentagon Faces</h2>
                         
-                        <p>To understand pentagons, we need to calculate the interior angle of a regular pentagon. A pentagon can be divided into 3 triangles, so its total angle sum is 3 × 180° = 540°. Since all five angles are equal: 540° ÷ 5 = 108° per angle.</p>
+                        <p>To understand pentagons, we need to calculate the interior angle of a regular pentagon.</p>
+
+<div class="image-container">
+    <h4>Pentagon Division into Triangles</h4>
+    <svg width="300" height="300" viewBox="-150 -150 300 300" style="border: 1px solid #ddd; border-radius: 4px; background: #f8f9fa;">
+        <!-- Pentagon outline -->
+        <polygon points="0,-120 114.16,-37.08 70.63,97.08 -70.63,97.08 -114.16,-37.08" 
+                 fill="none" 
+                 stroke="#2c3e50" 
+                 stroke-width="3"/>
+        
+        <!-- Triangle 1 (red) -->
+        <polygon points="0,-120 114.16,-37.08 70.63,97.08" 
+                 fill="#e74c3c" 
+                 fill-opacity="0.6" 
+                 stroke="#2c3e50" 
+                 stroke-width="2"/>
+        
+        <!-- Triangle 2 (blue) -->
+        <polygon points="0,-120 70.63,97.08 -70.63,97.08" 
+                 fill="#3498db" 
+                 fill-opacity="0.6" 
+                 stroke="#2c3e50" 
+                 stroke-width="2"/>
+        
+        <!-- Triangle 3 (green) -->
+        <polygon points="0,-120 -70.63,97.08 -114.16,-37.08" 
+                 fill="#2ecc71" 
+                 fill-opacity="0.6" 
+                 stroke="#2c3e50" 
+                 stroke-width="2"/>
+        
+        <!-- Vertex dots -->
+        <circle cx="0" cy="-120" r="4" fill="#2c3e50"/> <!-- Top vertex (dividing point) -->
+        <circle cx="114.16" cy="-37.08" r="4" fill="#2c3e50"/>
+        <circle cx="70.63" cy="97.08" r="4" fill="#2c3e50"/>
+        <circle cx="-70.63" cy="97.08" r="4" fill="#2c3e50"/>
+        <circle cx="-114.16" cy="-37.08" r="4" fill="#2c3e50"/>
+        
+        <!-- Labels -->
+        <text x="0" y="140" text-anchor="middle" font-family="Times New Roman" font-size="12" fill="#666">3 triangles × 180° = 540° total</text>
+    </svg>
+    <p><em>A pentagon can be divided into 3 triangles from any vertex</em></p>
+</div>
+
+<p>As shown above, a pentagon can be divided into 3 triangles, so its total angle sum is 3 × 180° = 540°. Since all five angles are equal, a <em>regular</em> pentagon has: 540° ÷ 5 = 108° per angle.</p>
                         
                         <div class="platonic-solid">
                             <h4>Case 1: Three Pentagons at Each Vertex</h4>
@@ -742,17 +804,17 @@
                             <p>Three pentagons create 3 × 108° = 324° < 360°, allowing for a proper three-dimensional corner.</p>
                             
                             <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Dodecahedron.svg/240px-Dodecahedron.svg.png" 
-                                     alt="Dodecahedron - twelve pentagonal faces" 
-                                     width="300">
-                                <p><em>The dodecahedron: 12 pentagonal faces, 30 edges, 20 vertices</em></p>
-                            </div>
+    <h4>Interactive Dodecahedron</h4>
+    <div id="dodecahedron-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • The dodecahedron: 12 pentagonal faces, 30 edges, 20 vertices</em></p>
+</div>
+                            
                         </div>
                         
                         <div class="impossible-case">
                             <h4>Case 2: Four or More Pentagons at Each Vertex</h4>
                             <p><strong>Result:</strong> Impossible!</p>
-                            <p>Four pentagons would create 4 × 108° = 432° > 360°, which is impossible in ordinary three-dimensional space.</p>
+                            <p>Four pentagons would create 4 × 108° = 432° > 360°, which again doesn't close up.</p>
                         </div>
                         
                         <p><strong>Conclusion for pentagons:</strong> We get exactly one Platonic solid using pentagonal faces.</p>
@@ -770,12 +832,13 @@
                             <p><strong>Result:</strong> Impossible as a 3D solid!</p>
                             <p>Three hexagons would create 3 × 120° = 360°, which lies completely flat and tiles the plane (like a honeycomb pattern).</p>
                             
-                            <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hexagonal_tiling_uniform_coloring_1.png/320px-Hexagonal_tiling_uniform_coloring_1.png" 
-                                     alt="Hexagonal tiling of the plane" 
-                                     width="400">
-                                <p><em>Three hexagons around a vertex create a flat honeycomb tiling</em></p>
-                            </div>
+
+<div class="image-container">
+    <h4>Interactive Hexagonal Tiling</h4>
+    <div id="hexagonal-tiling-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • Three hexagons around each vertex create a flat honeycomb tiling</em></p>
+</div>
+
                         </div>
                         
                         <div class="impossible-case">
@@ -813,15 +876,7 @@
                                 <li><strong>Dodecahedron:</strong> 3 pentagons at each vertex → 12 faces</li>
                             </ul>
                         </div>
-                        
-                        <div class="image-container">
-                            <h4>The Complete Family</h4>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Platonic_solids2.svg/640px-Platonic_solids2.svg.png" 
-                                 alt="All five Platonic solids" 
-                                 width="600">
-                            <p><em>The five Platonic solids: tetrahedron, cube, octahedron, dodecahedron, and icosahedron</em></p>
-                        </div>
-                        
+                                                
                         <div class="historical-note">
                             <h3>The Remarkable Conclusion</h3>
                             <p><strong>These five are the only regular polyhedra that can exist in three-dimensional space.</strong></p>
@@ -834,9 +889,9 @@
                         <p>The proof that these five solids exhaust all possibilities demonstrates the power of systematic mathematical reasoning. By carefully analyzing the constraints imposed by geometry—specifically, the requirement that the angles around each vertex must sum to less than 360°—we can definitively answer a question that might seem impossibly complex.</p>
                         
                         <div class="homework">
-                            <h4>Looking Ahead</h4>
-                            <p>In our next lecture, we'll explore how Euclid builds up the tools needed for these sophisticated constructions, starting with fundamental concepts like congruence, parallel lines, and the properties that make geometric reasoning possible.</p>
-                            <p><strong>Assignment:</strong> Try to imagine what other conditions might be necessary to prove that we can actually construct these five solids using compass and straightedge. What additional geometric facts beyond our angle calculations would Euclid need to establish?</p>
+                            <p><strong>Homework:</strong> 
+Prove the theorem that if the angles in a triangle add to less than 180°, then AAA (angle-angle-angle) implies not just similarity (as in Euclidean geometry), but congruence! That is, given two triangles with the same corresponding angle measures, the corresponding side lengths must also be the same! (How can this be right? Surely there's a contradiction here somewhere?...)
+                            </p>
                         </div>
                     </section>
                     
@@ -896,7 +951,7 @@ function createTetrahedron() {
     const light2 = new THREE.AmbientLight(0x404040, 0.4);
     scene.add(light2);
     
-    camera.position.set(2, 2, 4);
+    camera.position.set(1.5, 1.5, 3);
     camera.lookAt(0, 0, 0);
     
     // Mouse controls
@@ -1097,7 +1152,6 @@ function createIcosahedron() {
 
 
 
-
 // Create interactive triangular tiling
 function createTriangularTiling() {
     const container = document.getElementById('triangular-tiling-3d');
@@ -1115,81 +1169,101 @@ function createTriangularTiling() {
     // Create triangular tiling
     const tilingGroup = new THREE.Group();
     
-    // Define colors for alternating triangles
-    const colors = [0xffd700, 0xff6b6b, 0x4ecdc4, 0x45b7d1, 0x96ceb4, 0xfeca57];
+    // Triangular lattice vectors
+    const scale = 0.4;
+    const a1x = scale;
+    const a1y = 0;
+    const a2x = scale * 0.5;
+    const a2y = scale * Math.sqrt(3) / 2;
     
-    // Triangle parameters - using proper equilateral triangle math
-    const sideLength = 0.7;
-    const height = sideLength * Math.sqrt(3) / 2;  // height of equilateral triangle
-    const rowSpacing = height;  // vertical distance between triangle rows
-    const colSpacing = sideLength * 3/4;  // horizontal distance between triangle centers
+    // Triangle geometry parameters
+    const triHeight = scale * Math.sqrt(3) / 2;
     
-    // Create hexagonal grid of triangles
-    for (let row = -5; row <= 5; row++) {
-        for (let col = -6; col <= 6; col++) {
+    // Generate triangles on triangular lattice
+    for (let i = -8; i <= 8; i++) {
+        for (let j = -8; j <= 8; j++) {
+            // Position in triangular lattice
+            const x = i * a1x + j * a2x;
+            const y = i * a1y + j * a2y;
+            
             // Skip triangles too far from center
-            if (Math.sqrt(row*row + col*col) > 5.5) continue;
+            if (Math.sqrt(x*x + y*y) > 3) continue;
             
-            // Calculate position
-            const x = col * colSpacing;
-            const y = row * rowSpacing;
+            // Create upward pointing triangle
+            const geometry1 = new THREE.BufferGeometry();
+            const vertices1 = new Float32Array([
+                x, y + triHeight * 2/3, 0,                    // top
+                x - scale/2, y - triHeight/3, 0,              // bottom left  
+                x + scale/2, y - triHeight/3, 0               // bottom right
+            ]);
+            geometry1.setAttribute('position', new THREE.BufferAttribute(vertices1, 3));
+            geometry1.computeVertexNormals();
             
-            // Determine triangle orientation based on grid position
-            const pointsUp = (row + col) % 2 === 0;
-            
-            // Create triangle geometry
-            const geometry = new THREE.BufferGeometry();
-            let vertices;
-            
-            if (pointsUp) {
-                // Upward pointing triangle
-                vertices = new Float32Array([
-                    x, y + height/3, 0,                      // top vertex
-                    x - sideLength/2, y - height/3, 0,       // bottom left
-                    x + sideLength/2, y - height/3, 0        // bottom right
-                ]);
-            } else {
-                // Downward pointing triangle
-                vertices = new Float32Array([
-                    x, y - height/3, 0,                      // bottom vertex  
-                    x - sideLength/2, y + height/3, 0,       // top left
-                    x + sideLength/2, y + height/3, 0        // top right
-                ]);
-            }
-            
-            geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-            geometry.computeVertexNormals();
-            
-            const material = new THREE.MeshPhongMaterial({ 
-                color: colors[Math.abs(row + col) % colors.length],
+            const material1 = new THREE.MeshPhongMaterial({ 
+                color: 0x4169e1,  // Nice blue color
                 transparent: true,
-                opacity: 0.85,
+                opacity: 0.8,
                 side: THREE.DoubleSide
             });
-            const triangle = new THREE.Mesh(geometry, material);
+            const triangle1 = new THREE.Mesh(geometry1, material1);
+            tilingGroup.add(triangle1);
             
-            tilingGroup.add(triangle);
+            // Bold wireframe edges
+            const edges1 = new THREE.EdgesGeometry(geometry1);
+            const wireframe1 = new THREE.LineSegments(edges1, 
+                new THREE.LineBasicMaterial({ 
+                    color: 0x2c3e50,  // Dark blue-gray edges
+                    linewidth: 3 
+                }));
+            tilingGroup.add(wireframe1);
             
-            // Add wireframe edges
-            const edges = new THREE.EdgesGeometry(geometry);
-            const wireframe = new THREE.LineSegments(edges, 
-                new THREE.LineBasicMaterial({ color: 0x2c3e50, linewidth: 2 }));
+            // Create downward pointing triangle (offset position)
+            const x2 = x + scale/2;
+            const y2 = y + triHeight/3;
             
-            tilingGroup.add(wireframe);
+            // Skip if too far from center
+            if (Math.sqrt(x2*x2 + y2*y2) > 3) continue;
+            
+            const geometry2 = new THREE.BufferGeometry();
+            const vertices2 = new Float32Array([
+                x2, y2 - triHeight * 2/3, 0,                 // bottom
+                x2 - scale/2, y2 + triHeight/3, 0,           // top left
+                x2 + scale/2, y2 + triHeight/3, 0            // top right
+            ]);
+            geometry2.setAttribute('position', new THREE.BufferAttribute(vertices2, 3));
+            geometry2.computeVertexNormals();
+            
+            const material2 = new THREE.MeshPhongMaterial({ 
+                color: 0x4169e1,  // Same blue color
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
+            });
+            const triangle2 = new THREE.Mesh(geometry2, material2);
+            tilingGroup.add(triangle2);
+            
+            // Bold wireframe edges
+            const edges2 = new THREE.EdgesGeometry(geometry2);
+            const wireframe2 = new THREE.LineSegments(edges2, 
+                new THREE.LineBasicMaterial({ 
+                    color: 0x2c3e50,  // Dark blue-gray edges
+                    linewidth: 3 
+                }));
+            tilingGroup.add(wireframe2);
         }
     }
     
     scene.add(tilingGroup);
     
     // Lighting
-    const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
-    light1.position.set(1, 1, 1);
-    scene.add(light1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
     
-    const light2 = new THREE.AmbientLight(0x404040, 0.5);
-    scene.add(light2);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
     
-    camera.position.set(0, 0, 5);
+    camera.position.set(0, -2, 2);
     camera.lookAt(0, 0, 0);
     
     // Mouse controls
@@ -1226,15 +1300,604 @@ function createTriangularTiling() {
     }
     animate();
 }
+
+
+// Create interactive hyperbolic triangles - 7 equilateral triangles meeting at one vertex
+function createHyperbolicTriangles() {
+    const container = document.getElementById('hyperbolic-triangles-3d');
+    if (!container) return;
     
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
     
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create group for all triangles
+    const hyperbolicGroup = new THREE.Group();
+    
+    // Parameters
+    const sideLength = 0.5;
+    const numTriangles = 7;
+    
+    // Central shared vertex at origin
+    const centerVertex = new THREE.Vector3(0, 0, 0);
+    
+    // We need to place 7 equilateral triangles around a vertex
+    // Each triangle has 60° at the center, total = 420°
+    // Excess of 60° creates hyperbolic curvature
+    
+    // Create the vertices in a ring around the center
+    // These will be the "outer" vertices of each triangle
+    const ringVertices = [];
+    const baseAngle = 2 * Math.PI / numTriangles; // Angle between adjacent triangles in "flat" projection
+    
+    for (let i = 0; i < numTriangles; i++) {
+        const angle = i * baseAngle;
+        // Start with vertices in a circle at distance = side length
+        const x = Math.cos(angle) * sideLength;
+        const y = Math.sin(angle) * sideLength;
+        const z = 0; // Start flat, we'll adjust for curvature
+        ringVertices.push(new THREE.Vector3(x, y, z));
+    }
+    
+    // Now adjust the z-coordinates to create the hyperbolic "saddle" shape
+    // The excess angle forces some triangles up and others down
+    for (let i = 0; i < numTriangles; i++) {
+        // Create alternating up/down pattern with some variation
+        const upDown = Math.sin(i * 2 * Math.PI * 2.5 / numTriangles); // Creates saddle-like undulation
+        const curvature = 0.25; // Amount of curvature
+        ringVertices[i].z = upDown * curvature;
+        
+        // Adjust x,y slightly to maintain equilateral triangle property
+        // as we curve in z direction
+        const compressionFactor = Math.cos(upDown * curvature);
+        ringVertices[i].x *= (0.9 + 0.1 * compressionFactor);
+        ringVertices[i].y *= (0.9 + 0.1 * compressionFactor);
+    }
+    
+    // Create triangles with shared edges
+    for (let i = 0; i < numTriangles; i++) {
+        const vertex1 = centerVertex.clone();           // Shared center vertex
+        const vertex2 = ringVertices[i].clone();        // Current outer vertex
+        const vertex3 = ringVertices[(i + 1) % numTriangles].clone(); // Next outer vertex (shared edge)
+        
+        // Fine-tune to make triangles more equilateral by adjusting the shared vertices
+        // Average the adjacent triangles' influence on shared vertices
+        if (i > 0) {
+            const prevCenter = new THREE.Vector3().addVectors(vertex1, ringVertices[i-1]).multiplyScalar(0.5);
+            const currentCenter = new THREE.Vector3().addVectors(vertex1, vertex2).multiplyScalar(0.5);
+            const blend = 0.1;
+            vertex2.lerp(prevCenter.add(currentCenter.multiplyScalar(-1)).add(vertex2), blend);
+        }
+        
+        // Create triangle geometry
+        const geometry = new THREE.BufferGeometry();
+        const vertices = new Float32Array([
+            vertex1.x, vertex1.y, vertex1.z,
+            vertex2.x, vertex2.y, vertex2.z,
+            vertex3.x, vertex3.y, vertex3.z
+        ]);
+        
+        geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        geometry.computeVertexNormals();
+        
+        // Different colors for each triangle
+        const colors = [0xe74c3c, 0x3498db, 0x2ecc71, 0xf39c12, 0x9b59b6, 0x1abc9c, 0xe67e22];
+        const material = new THREE.MeshPhongMaterial({ 
+            color: colors[i],
+            transparent: true,
+            opacity: 0.85,
+            side: THREE.DoubleSide
+        });
+        
+        const triangle = new THREE.Mesh(geometry, material);
+        hyperbolicGroup.add(triangle);
+        
+        // Add wireframe edges
+        const edges = new THREE.EdgesGeometry(geometry);
+        const wireframe = new THREE.LineSegments(edges, 
+            new THREE.LineBasicMaterial({ 
+                color: 0x2c3e50, 
+                linewidth: 4 
+            }));
+        hyperbolicGroup.add(wireframe);
+    }
+    
+    // Add a sphere at the center vertex
+    const centerGeometry = new THREE.SphereGeometry(0.04);
+    const centerMaterial = new THREE.MeshPhongMaterial({ 
+        color: 0x2c3e50,
+        emissive: 0x444444
+    });
+    const centerSphere = new THREE.Mesh(centerGeometry, centerMaterial);
+    centerSphere.position.copy(centerVertex);
+    hyperbolicGroup.add(centerSphere);
+    
+    scene.add(hyperbolicGroup);
+    
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight1.position.set(1, 1, 1);
+    scene.add(directionalLight1);
+    
+    const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+    directionalLight2.position.set(-1, -1, 1);
+    scene.add(directionalLight2);
+    
+    camera.position.set(0, -.7, .7);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            hyperbolicGroup.rotation.y += deltaX * 0.01;
+            hyperbolicGroup.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+// Create interactive cube
+function createCube() {
+    const container = document.getElementById('cube-3d');
+    if (!container) return;
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+    
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create cube
+    const geometry = new THREE.BoxGeometry(2, 2, 2);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0x27ae60,
+        transparent: true,
+        opacity: 0.8,
+        shininess: 100
+    });
+    const cube = new THREE.Mesh(geometry, material);
+    
+    // Add only the edges (not wireframe)
+    const edges = new THREE.EdgesGeometry(geometry);
+    const edgesMaterial = new THREE.LineBasicMaterial({ color: 0x2c3e50, linewidth: 2 });
+    const edgesMesh = new THREE.LineSegments(edges, edgesMaterial);
+    
+    scene.add(cube);
+    scene.add(edgesMesh);
+    
+    // Lighting
+    const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    light1.position.set(1, 1, 1);
+    scene.add(light1);
+    
+    const light2 = new THREE.AmbientLight(0x404040, 0.4);
+    scene.add(light2);
+    
+    camera.position.set(2, 2, 4);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            cube.rotation.y += deltaX * 0.01;
+            cube.rotation.x += deltaY * 0.01;
+            edgesMesh.rotation.y += deltaX * 0.01;
+            edgesMesh.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+// Create interactive square tiling
+function createSquareTiling() {
+    const container = document.getElementById('square-tiling-3d');
+    if (!container) return;
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+    
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create square tiling
+    const tilingGroup = new THREE.Group();
+    
+    // Square parameters
+    const squareSize = 0.4;
+    const gridSize = 8; // Number of squares in each direction
+    
+    // Create grid of squares
+    for (let row = -gridSize; row <= gridSize; row++) {
+        for (let col = -gridSize; col <= gridSize; col++) {
+            // Calculate position
+            const x = col * squareSize;
+            const y = row * squareSize;
+            const z = 0; // All squares lie in the same plane
+            
+            // Skip squares too far from center
+            if (Math.sqrt(x*x + y*y) > gridSize * squareSize * 0.8) continue;
+            
+            // Create square geometry
+            const geometry = new THREE.PlaneGeometry(squareSize, squareSize);
+            
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0x27ae60,  // Nice green color
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
+            });
+            
+            const square = new THREE.Mesh(geometry, material);
+            square.position.set(x, y, z);
+            
+            tilingGroup.add(square);
+            
+            // Add bold wireframe edges
+            const edges = new THREE.EdgesGeometry(geometry);
+            const wireframe = new THREE.LineSegments(edges, 
+                new THREE.LineBasicMaterial({ 
+                    color: 0x2c3e50,  // Dark blue-gray edges
+                    linewidth: 3 
+                }));
+            wireframe.position.set(x, y, z);
+            
+            tilingGroup.add(wireframe);
+        }
+    }
+    
+    scene.add(tilingGroup);
+    
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+    
+    camera.position.set(0, -2, 1);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            tilingGroup.rotation.y += deltaX * 0.01;
+            tilingGroup.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+// Create interactive dodecahedron
+function createDodecahedron() {
+    const container = document.getElementById('dodecahedron-3d');
+    if (!container) return;
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+    
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create dodecahedron
+    const geometry = new THREE.DodecahedronGeometry(1.5);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0x9b59b6,
+        transparent: true,
+        opacity: 0.8,
+        shininess: 100
+    });
+    const dodecahedron = new THREE.Mesh(geometry, material);
+    
+    // Add wireframe
+    const edges = new THREE.EdgesGeometry(geometry);
+    const edgesMaterial = new THREE.LineBasicMaterial({ color: 0x2c3e50, linewidth: 2 });
+    const edgesMesh = new THREE.LineSegments(edges, edgesMaterial);
+    
+    scene.add(dodecahedron);
+    scene.add(edgesMesh);
+    
+    // Lighting
+    const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    light1.position.set(1, 1, 1);
+    scene.add(light1);
+    
+    const light2 = new THREE.AmbientLight(0x404040, 0.4);
+    scene.add(light2);
+    
+    camera.position.set(2, 2, 4);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            dodecahedron.rotation.y += deltaX * 0.01;
+            dodecahedron.rotation.x += deltaY * 0.01;
+            edgesMesh.rotation.y += deltaX * 0.01;
+            edgesMesh.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+
+
+
+// Create interactive hexagonal tiling
+function createHexagonalTiling() {
+    const container = document.getElementById('hexagonal-tiling-3d');
+    if (!container) return;
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+    
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create hexagonal tiling
+    const tilingGroup = new THREE.Group();
+    
+    // Hexagon parameters - using circumradius (center to vertex distance)
+    const hexRadius = 0.35;
+    
+    // Hexagonal lattice vectors - proper hexagonal lattice with 120° angles
+    // For regular hexagonal tiling, the lattice vectors are:
+    // a1 = (3/2 * R, sqrt(3)/2 * R, 0) where R is circumradius
+    // a2 = (0, sqrt(3) * R, 0) 
+    const a1x = 3/2 * hexRadius;
+    const a1y = Math.sqrt(3)/2 * hexRadius;
+    const a2x = 0;
+    const a2y = Math.sqrt(3) * hexRadius;
+    
+    // Generate hexagons in proper honeycomb pattern
+    const gridSize = 6;
+    
+    for (let i = -gridSize; i <= gridSize; i++) {
+        for (let j = -gridSize; j <= gridSize; j++) {
+            // Position using proper hexagonal lattice vectors
+            const x = i * a1x + j * a2x;
+            const y = i * a1y + j * a2y;
+            
+            // Skip hexagons too far from center
+            if (Math.sqrt(x*x + y*y) > 2.2) continue;
+            
+            // Create hexagon geometry
+            const geometry = new THREE.BufferGeometry();
+            
+            // Create vertices - center plus 6 outer vertices
+            const localVertices = [];
+            
+            // Center vertex
+            localVertices.push(0, 0, 0);
+            
+            // Six outer vertices of regular hexagon
+            for (let k = 0; k < 6; k++) {
+                const angle = (k * Math.PI) / 3; // 60° increments
+                localVertices.push(
+                    hexRadius * Math.cos(angle),
+                    hexRadius * Math.sin(angle),
+                    0
+                );
+            }
+            
+            const vertices = new Float32Array(localVertices);
+            geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+            
+            // Create triangular faces from center to edge vertices
+            const indices = [];
+            for (let k = 0; k < 6; k++) {
+                indices.push(0, k + 1, ((k + 1) % 6) + 1);
+            }
+            geometry.setIndex(indices);
+            geometry.computeVertexNormals();
+            
+            // Single color for all hexagons
+            const material = new THREE.MeshPhongMaterial({ 
+                color: 0xf39c12, // Orange color
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
+            });
+            
+            const hexagon = new THREE.Mesh(geometry, material);
+            hexagon.position.set(x, y, 0);
+            tilingGroup.add(hexagon);
+            
+            // Add bold wireframe edges
+            const edges = new THREE.EdgesGeometry(geometry);
+            const wireframe = new THREE.LineSegments(edges, 
+                new THREE.LineBasicMaterial({ 
+                    color: 0x2c3e50,
+                    linewidth: 3 
+                }));
+            wireframe.position.set(x, y, 0);
+            tilingGroup.add(wireframe);
+        }
+    }
+    
+    scene.add(tilingGroup);
+    
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+    
+    // Position camera at an angle initially
+    camera.position.set(0, -2, 1);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            tilingGroup.rotation.y += deltaX * 0.01;
+            tilingGroup.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+
+
 // Initialize when page loads
 window.addEventListener('load', function() {
     createTetrahedron();
     createOctahedron();
     createIcosahedron();
     createTriangularTiling();
-});    
+    createHyperbolicTriangles();
+    createCube();
+    createSquareTiling();
+    createDodecahedron();
+    createHexagonalTiling();
+});
+
 </script>
 
     <script>

@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 3: Moving Towards Formalized Euclidean Geometry</title>
+    
+    <!-- Math typesetting with MathJax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    
+    <style>
+        html, body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            scroll-behavior: auto;
+        }
+        
+        /* Split-pane layout */
+        .split-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        /* Add the bottom-hidden class by default */
+        .split-container.bottom-hidden .bottom-pane {
+            display: none;
+        }
+        
+        .split-container.bottom-hidden .divider {
+            display: none;
+        }
+        
+        .split-container.bottom-hidden .top-pane {
+            height: 100% !important;
+        }
+        
+        /* Top pane with scrollable content */
+        .top-pane {
+            display: flex;
+            overflow: hidden;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        /* Bottom pane with fixed Lean frame */
+        .bottom-pane {
+            width: 100%;
+            height: 40vh;
+            position: relative;
+        }
+        
+        /* Resizable divider */
+        .divider {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            cursor: ns-resize;
+            position: relative;
+        }
+        
+        .divider:hover {
+            background-color: #bbb;
+        }
+        
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            width: 30px;
+            height: 2px;
+            background-color: #888;
+            transform: translateX(-50%);
+        }
+        
+        /* Navigation */
+        nav {
+            width: 280px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            height: 100%;
+            overflow-y: auto;
+            flex-shrink: 0;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        nav h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        nav li {
+            margin-bottom: 8px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        nav a:hover {
+            background-color: #e3f2fd;
+        }
+        
+        /* Main content area */
+        .content-scroll {
+            flex-grow: 1;
+            height: 100%;
+            overflow-y: auto;
+            padding: 0 30px;
+            scroll-behavior: auto;
+        }
+        
+        main {
+            max-width: 900px;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: #34495e;
+        }
+        
+        /* Styled boxes for different content types */
+        .historical-note {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .historical-note h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .definition {
+            background-color: #e8f5e8;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .definition h4 {
+            margin-top: 0;
+            color: #155724;
+        }
+        
+        .postulate {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .postulate h4 {
+            margin-top: 0;
+            color: #856404;
+        }
+        
+        .theorem-proof {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .homework {
+            background-color: #f1f3f4;
+            border-left: 4px solid #6c757d;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .homework h4 {
+            margin-top: 0;
+            color: #495057;
+        }
+        
+        /* Critical gap highlighting */
+        .critical-gap {
+            background-color: #ffe6e6;
+            border-left: 4px solid #dc3545;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .critical-gap h4 {
+            margin-top: 0;
+            color: #721c24;
+        }
+        
+        /* Lean code styling */
+        .lean-code {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+ .lean-text {
+background-color: #1e1e1e;
+            color: #d4d4d4;        
+}
+
+        
+ .keyword {
+ background-color: #1e1e1e;
+             color: #569cd6;
+        }
+        
+ .type {
+ background-color: #1e1e1e;
+            color: #4ec9b0;
+        }
+        
+ .comment {
+ background-color: #1e1e1e;
+             color: #6a9955;
+            font-style: italic;
+        }
+        
+ .function {
+  background-color: #1e1e1e;
+             color: #dcdcaa;
+        }
+        
+        /* Image container */
+        .image-container {
+            margin: 25px 0;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .image-container h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        /* Two-column proof styling */
+        .two-column-proof {
+            border: 2px solid #2c3e50;
+            margin: 20px 0;
+            background-color: white;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .proof-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .statements-header, .reasons-header {
+            padding: 12px 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .reasons-header {
+            border-left: 2px solid white;
+        }
+
+        .proof-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .proof-step:last-child {
+            border-bottom: none;
+        }
+
+        .proof-step.conclusion {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .proof-step.contradiction {
+            background-color: #ffe6e6;
+            font-weight: bold;
+            color: #721c24;
+        }
+
+        .statement, .reason {
+            padding: 10px 15px;
+            border-right: 1px solid #dee2e6;
+        }
+
+        .reason {
+            border-right: none;
+            border-left: 1px solid #dee2e6;
+            font-style: italic;
+        }
+
+        .proof-step:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        /* Back to home link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Special styling for hyperbolic geometry */
+        .hyperbolic-insight {
+            background-color: #f0f8ff;
+            border-left: 4px solid #4169e1;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .hyperbolic-insight h4 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+        
+        /* Arrow animation styles */
+.curvy-arrow {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.curvy-arrow.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.arrow-path {
+    fill: none;
+    stroke: #dc3545;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawArrow 1s ease-out forwards;
+}
+
+.arrow-head {
+    fill: #dc3545;
+    opacity: 0;
+    animation: showArrowHead 0.3s ease-out 0.8s forwards;
+}
+
+@keyframes drawArrow {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes showArrowHead {
+    to {
+        opacity: 1;
+    }
+}
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .top-pane {
+                flex-direction: column;
+            }
+            
+            nav {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+            
+            .content-scroll {
+                padding: 0 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container bottom-hidden">
+        <!-- Top pane with scrollable content -->
+        <div class="top-pane">
+<nav>
+    <h2>Lecture 3 Contents</h2>
+    <ul>
+        <li><a href="#homework-problem">Homework Problem</a></li>
+        <li><a href="#hyperbolic-setup">Problem Setup</a></li>
+        <li><a href="#aaa-proof">The AAA Proof</a></li>
+        <li><a href="#euclid-gap">Gap in Euclid's Proof</a></li>
+        <li><a href="#circle-intersection">The Glaring Gap</a></li>
+        <li><a href="#hilbert-revolution">Hilbert's Revolution</a></li>
+        <li><a href="#false-positives-negatives">False Positives & Negatives</a></li>
+        <li><a href="#meaningless-definitions">Meaningless Definitions</a></li>
+        <li><a href="#formal-approach">The Formal Approach</a></li>
+        <li><a href="#lean-formalization">Modern Formalization</a></li>
+    </ul>
+</nav>            
+            <div class="content-scroll">
+                <main>
+                    <a href="index.html" class="back-link">← Back to Course Home</a>
+                    
+                    <h1>Lecture 3: Moving Towards Formalized Euclidean Geometry</h1>
+                    
+                    <section id="homework-problem">
+                        <h2>Homework Problem: A Surprising Result in Hyperbolic Geometry</h2>
+                        
+                        <p>In our exploration of non-Euclidean geometry, we encountered a remarkable fact: when the parallel postulate fails, seemingly familiar settings result in  completely completely unexpected outcomes. Today we'll prove one of the most surprising results in hyperbolic geometry.</p>
+                        
+                        <div class="homework">
+                            <h4>The Problem</h4>
+                            <p><strong>Assume:</strong> The angles in any triangle always add up to <em>less than</em> 180 degrees.</p>
+                            <p><strong>Theorem:</strong> If two triangles have the same corresponding angles (AAA), then they are <em>congruent</em> (not just similar)!</p>
+                            <p>In other words, prove that AAA implies congruence in hyperbolic geometry.</p>
+                        </div>
+                        
+                        <p>This is startling! In Euclidean geometry, triangles with the same angles can have different sizes—think of a small triangle and a large triangle that are similar but not congruent. But in hyperbolic geometry, having the same angles <em>forces</em> the triangles to be exactly the same size.</p>
+                    </section>
+                    
+                    <section id="hyperbolic-setup">
+                        <h2>Problem Setup</h2>
+                        
+                        <div class="hyperbolic-insight">
+                            <h4>Key Insight</h4>
+                            <p>The crucial difference in hyperbolic geometry is that angle sums are constrained. When triangles have smaller angle sums, there's less "room" for variation in size while maintaining the same angles.</p>
+                        </div>
+                        
+                        <p><strong>Given:</strong></p>
+                        <ul>
+                            <li>Triangles ABC and DEF with ∠A = ∠D, ∠B = ∠E, and ∠C = ∠F</li>
+                            <li><strong>Postulate 5':</strong> Sum of angles in any triangle is less than 180°</li>
+                        </ul>
+                        
+                        <p><strong>Goal:</strong> Prove that AB = DE, BC = EF, and AC = DF (i.e., the triangles are congruent)</p>
+                        
+                        <p><strong>Strategy:</strong> We'll use proof by contradiction, assuming the sides are different and showing this leads to an impossible situation.</p>
+                        
+                        <div class="image-container">
+                            <h4>Setup Diagram</h4>
+                            <svg width="400" height="300" viewBox="0 0 400 300" style="border: 1px solid #ddd; background: #f8f9fa;">
+                                <!-- Triangle ABC -->
+                                <polygon points="80,60 160,180 40,180" fill="#e74c3c" fill-opacity="0.3" stroke="#2c3e50" stroke-width="2"/>
+                                <text x="75" y="55" font-family="Times New Roman" font-size="16" fill="#2c3e50">A</text>
+                                <text x="165" y="195" font-family="Times New Roman" font-size="16" fill="#2c3e50">C</text>
+                                <text x="25" y="195" font-family="Times New Roman" font-size="16" fill="#2c3e50">B</text>
+
+                                
+       <!-- Triangle DEF (larger but same shape as ABC) -->
+                                <polygon points="290,40 380,200 250,200" fill="#3498db" fill-opacity="0.3" stroke="#2c3e50" stroke-width="2"/>
+                                <text x="285" y="35" font-family="Times New Roman" font-size="16" fill="#2c3e50">D</text>
+                                <text x="385" y="215" font-family="Times New Roman" font-size="16" fill="#2c3e50">F</text>
+                                <text x="235" y="215" font-family="Times New Roman" font-size="16" fill="#2c3e50">E</text>
+
+                                
+                               
+                            </svg>
+                            <p><em>Are these triangles necessarily congruent in hyperbolic geometry?</em></p>
+                        </div>
+                    </section>
+                    
+                    <section id="aaa-proof">
+                        <h2>The Proof: AAA Implies Congruence</h2>
+                        
+                        <p>We'll proceed by contradiction, showing that if the sides are different, we can construct a quadrilateral whose angles sum to exactly 360°—contradicting our assumption about hyperbolic geometry.</p>
+                        
+                        <div class="two-column-proof">
+                            <div class="proof-header">
+                                <div class="statements-header">Statements</div>
+                                <div class="reasons-header">Reasons</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">1. Given triangles ABC, DEF with ∠A = ∠D, ∠B = ∠E, ∠C = ∠F</div>
+                                <div class="reason">Given</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">2. Sum of angles in any triangle is < 180°</div>
+                                <div class="reason">Postulate 5' (hyperbolic geometry)</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">3. Sum of angles in any quadrilateral is < 360°</div>
+                                <div class="reason">Quadrilateral splits into two triangles</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">4. Assume DE ≠ AB, say DE > AB</div>
+                                <div class="reason">Proof by contradiction</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">5. On side DE, mark point G such that DG = AB</div>
+                                <div class="reason">Using compass construction</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">6. At G, construct angle equal to ∠B, creating ray GH that intersects DF at H</div>
+                                <div class="reason">Angle transfer theorem</div>
+                            </div>
+
+<!-- Interactive construction within the proof -->
+                        <div class="geogebra-container" style="margin: 20px 0;">
+                            <iframe src="https://www.geogebra.org/calculator/gebs8afy?embed" 
+                                    width="700" height="450" 
+                                    allowfullscreen 
+                                    style="border: 1px solid #e3e3e3;">
+                            </iframe>
+                        </div>
+                                                    
+                            <div class="proof-step">
+                                <div class="statement">7. Triangles ABC and DGH are congruent</div>
+                                <div class="reason">ASA (angle-side-angle)</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">8. Therefore ∠DHG = ∠C = ∠F</div>
+                                <div class="reason">Corresponding parts of congruent triangles</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">9. ∠HGE = 180° - ∠DGH = 180° - ∠B = 180° - ∠E</div>
+                                <div class="reason">Straight angles sum to 180°</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">10. ∠GHF = 180° - ∠DHG = 180° - ∠F</div>
+                                <div class="reason">Straight angles sum to 180°</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">11. In quadrilateral GHFE: ∠HGE + ∠GEF + ∠EFH + ∠FHG = (180° - ∠E) + ∠E + ∠F + (180° - ∠F) = 360°</div>
+                                <div class="reason">Angle addition</div>
+                            </div>
+                            
+                            <div class="proof-step contradiction">
+                                <div class="statement">12. CONTRADICTION!</div>
+                                <div class="reason">Contradicts step 3</div>
+                            </div>
+                        </div>
+                        
+                        <p><strong>QED</strong> - Since assuming different side lengths leads to a contradiction, the triangles must be congruent!</p>
+                        
+                        <p>Surely there must be something <em>wrong</em> with our argument above, because we all <em>know</em> and can see with our eyes that AAA does <em>not</em> imply congruence, only similarity! But where <strong>exactly</strong> is the contradiction? People like Gauss, Bolyai, and Lobachevsky tried in vain to find a contradiction but never succeeded. (It turns out that there's nothing wrong with the argument; hyperbolic geometry is just as valid a geometry as Euclid's!)</p>
+                    </section>
+                    
+<div class="arrow-container" id="arrowContainer" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 10;"></div>
+                    <section id="euclid-gap">
+                        <h2>A Critical Gap in Euclid's First Proposition</h2>
+                        
+                        <p>Having seen how careful reasoning works in hyperbolic geometry, let's return our attention to Euclid and look again at the proof we gave last time for Proposition I.1.</p>
+                                                
+                        <div class="theorem-proof">
+                            <h4>Euclid's Proposition I.1 (Revisited)</h4>
+                            <p><strong>Statement:</strong> To construct an equilateral triangle on a given finite straight line.</p>
+                           
+                        </div>
+                        
+                        <div class="two-column-proof">
+                            <div class="proof-header">
+                                <div class="statements-header">Construction Steps</div>
+                                <div class="reasons-header">Justification</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">1. Given points A and B</div>
+                                <div class="reason">By assumption</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">2. Construct line segment between A and B</div>
+                                <div class="reason">Postulate 1</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">3. Construct circle with center A and radius AB</div>
+                                <div class="reason">Postulate 3</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">4. Construct circle with center B and radius BA</div>
+                                <div class="reason">Postulate 3</div>
+                            </div>
+
+                        <div class="geogebra-container">
+                            <iframe src="https://www.geogebra.org/calculator/p3jzs8x7?embed" 
+                                    width="700" height="450" 
+                                    allowfullscreen 
+                                    style="border: 1px solid #e3e3e3;">
+                            </iframe>
+                        </div>
+
+                            
+                            <div class="proof-step">
+                                <div class="statement">5. Get point C where circles intersect</div>
+                                <div class="reason"></div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">6. Draw line segment from A to C</div>
+                                <div class="reason">Postulate 1</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">7. Draw line segment from B to C</div>
+                                <div class="reason">Postulate 1</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">8. AB = AC (both radii of circle centered at A)</div>
+                                <div class="reason">Definition of circle</div>
+                            </div>
+                            
+                            <div class="proof-step">
+                                <div class="statement">9. AB = BC (both radii of circle centered at B)</div>
+                                <div class="reason">Definition of circle</div>
+                            </div>
+                            
+                            <div class="proof-step conclusion">
+                                <div class="statement">10. Therefore AB = BC = AC</div>
+                                <div class="reason">Transitivity of equality</div>
+                            </div>
+                        </div>
+                    </section>
+                    
+
+<section id="circle-intersection">
+    <h2>The Glaring Gap</h2>
+    
+    <div class="critical-gap">
+        <p>Do you see the gap in the argument we just gave? It's very difficult to see the first time, and once it's pointed out to you, it's impossible to <em>unsee</em>...</p>
+        
+        <div style="text-align: center; margin: 20px 0; position: relative;">
+
+            
+            <button id="reveal-error-btn" style="
+                background-color: #dc3545;
+                color: white;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            " onmouseover="this.style.backgroundColor='#c82333'" 
+               onmouseout="this.style.backgroundColor='#dc3545'">
+                Show me where the error is!
+            </button>
+        </div>
+        
+        <div id="error-explanation" style="display: none;">
+            <div style="text-align: center; margin: 20px 0;">
+                <p style="color: #dc3545; font-weight: bold; font-size: 18px;">
+                    ⬆️ WHERE'S THE JUSTIFICATION? ⬆️
+                </p>
+                <p style="color: #721c24; font-style: italic;">
+Look at Step 5 in the proof above - Euclid gave no logical justification for it! Why do the circles intersect?
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gap-explanation" style="display: none;" class="critical-gap">
+        <h4>The Problem Revealed</h4>
+        <p><strong>When does a pair of circles actually intersect?</strong></p>
+        <p>
+        Of course the circles above <em>do</em> intersect; we can see that with our eyes! What's the problem?
+        </p>
+        <p>
+No! Look at how <em>logically precise</em> Euclid is being everywhere else: Postulate 4 says
+                                        that right angles are the same, no matter where you measure them. That's obvious too, just from looking!
+                                        Yet Euclid included the axiom, demonstrating his self-proclaimed desire to be absolutely precise and rigorous. Missing the need for justification here is simply a <strong>mistake</strong>, even by the great Euclid!
+        </p>
+                            <p>Note that the problem in Euclid's proof of Proposition I.1 isn't merely an argument about semantics; it's certainly not the case that <em>any</em> pair of 
+                            circles intersect:</p>
+                            
+                        <div class="image-container">
+                            <h4>Potential Circle Intersection Issues</h4>
+                            <svg width="600" height="300" viewBox="0 0 600 300" style="border: 1px solid #ddd; background: #f8f9fa;">
+                                <!-- Problematic case 1: circles too far apart -->
+                                <g transform="translate(100, 100)">
+                                    <circle cx="0" cy="0" r="40" fill="none" stroke="#3498db" stroke-width="2"/>
+                                    <circle cx="120" cy="0" r="60" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                                    <circle cx="0" cy="0" r="3" fill="#2c3e50"/>
+                                    <circle cx="120" cy="0" r="3" fill="#2c3e50"/>
+                                    <text x="-10" y="-10" font-family="Times New Roman" font-size="14" fill="#2c3e50">A</text>
+                                    <text x="125" y="-10" font-family="Times New Roman" font-size="14" fill="#2c3e50">B</text>
+                                    <text x="20" y="120" font-family="Times New Roman" font-size="12" fill="#dc3545">✗ No intersection!</text>
+                                </g>
+
+<!-- Problematic case 2: circles too close together -->
+<g transform="translate(450, 100)">
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#3498db" stroke-width="2"/>
+    <circle cx="20" cy="0" r="40" fill="none" stroke="#e74c3c" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3" fill="#2c3e50"/>
+    <circle cx="30" cy="0" r="3" fill="#2c3e50"/>
+    <text x="-10" y="-10" font-family="Times New Roman" font-size="14" fill="#2c3e50">A</text>
+    <text x="35" y="-10" font-family="Times New Roman" font-size="14" fill="#2c3e50">B</text>
+    <text x="20" y="120" font-family="Times New Roman" font-size="12" fill="#dc3545">✗ No intersection!</text>
+</g>                                
+
+                            </svg>
+                        </div>
+
+<p>What <strong>precise</strong> condition guarantees intersection?</p>                                                
+                        <div class="historical-note">
+                            <h3>The Need for New Axioms</h3>
+                            <p>This gap wasn't just a minor oversight—it revealed that Euclid's foundation was incomplete. To fix this, mathematicians eventually had to add explicit axioms guaranteeing that geometric constructions behave as expected.</p>
+                        </div>
+                        </div>
+                    </section>
+
+                    
+                    <section id="hilbert-revolution">
+                        <h2>Hilbert's Revolution (1899)</h2>
+                        
+                        <p>David Hilbert (1862-1943) was one of the greatest mathematicians of the late 19th and early 20th centuries. In 1899, he published <em>"Grundlagen der Geometrie"</em> (Foundations of Geometry), which completely revolutionized how we think about mathematical rigor.</p>
+                        
+                        <div class="image-container">
+                            <h4>David Hilbert (1862-1943)</h4>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Hilbert.jpg/250px-Hilbert.jpg" 
+                                 alt="Portrait of David Hilbert"
+                                 style="max-width: 250px;">
+                            <p><em>Hilbert transformed mathematics by insisting on complete formal rigor</em></p>
+                        </div>
+
+
+<section id="false-positives-negatives">
+    <h2>False Positives and False Negatives in Mathematical Reasoning</h2>
+    
+    <p>The examples we've seen reveal a deeper problem with how humans naturally approach mathematical reasoning. We can categorize the errors into two types:</p>
+    
+    <div class="definition">
+        <h4>False Positives in Mathematics</h4>
+        <p><strong>Definition:</strong> A theorem that appears to be perfectly well-justified but actually contains hidden gaps or unstated assumptions.</p>
+        <p><strong>Example:</strong> Euclid's Proposition I.1 looks completely rigorous—every step seems to follow logically from the postulates. Yet it contains a critical gap: the assumption that circles intersect without any justification for why this must be true.</p>
+    </div>
+    
+    <div class="critical-gap">
+        <h4>False Negatives in Mathematics</h4>
+        <p><strong>Definition:</strong> A theorem whose proof appears to contain errors or contradictions, when in fact the reasoning is perfectly sound.</p>
+        <p><strong>Example:</strong> The hyperbolic AAA theorem seems impossible—surely triangles with the same angles can have different sizes! Our intuition screams that something must be wrong with the proof. Yet the mathematics is completely valid; it's our Euclidean intuition that misleads us.</p>
+    </div>
+    
+<p>These false positives and false negatives reveal a fundamental problem: <strong>human intuition and visual perception are unreliable guides to mathematical truth!!!</strong> This doesn't mean we should abandon intuition and visualization in our quest to discover universal truths—these remain essential tools for mathematical discovery. But we must also rigorously <strong>verify</strong> our insights within a completely formal system, since mistakes are all too common and all too easy to make!</p>
+    
+    <div class="hyperbolic-insight">
+        <h4>The Root Cause</h4>
+        <p>Hilbert realized that what was truly at the core of these issues was simple: <em>when we humans allow our <strong>eyes</strong> to get involved in mathematical reasoning</em>.</p>
+        <p>Our visual intuition tells us that circles "obviously" intersect, that parallel lines "clearly" behave a certain way, that triangles with the same angles "must" be similar rather than congruent. But mathematics built on such visual intuitions inevitably contains hidden assumptions and gaps.</p>
+    </div>
+    
+    <div class="theorem-proof">
+        <h4>Hilbert's Radical Solution</h4>
+        <p><strong>The Problem:</strong> Human perception and intuition systematically mislead mathematical reasoning</p>
+        <p><strong>The Solution:</strong> Remove humanity from mathematics entirely</p>
+        <p>If we want mathematics to be truly precise and reliable, we must eliminate human judgment, visual intuition, and "obvious" assumptions. Mathematics must become a purely formal, mechanical process that could be carried out by a machine with no understanding of what the symbols "mean."</p>
+    </div>
+    
+    <p>This insight was revolutionary and deeply unsettling. Hilbert was essentially arguing that to achieve mathematical certainty, we must strip away everything that makes mathematics feel human, intuitive, and meaningful. The price of absolute rigor is the elimination of human insight from the reasoning process.</p>
+</section>
+                        
+                    
+                    <section id="meaningless-definitions">
+                        <h2>The Problem of "Meaningless" Definitions</h2>
+                        
+                        <p>This viewpoint already reveals other problems with Euclid's approach. Look back at  Euclid's very first definitions from Lecture 1:</p>
+                        
+                        <div class="critical-gap">
+                            <h4>Euclid's Definitions, Book I:</h4>
+                            <ul>
+                                <li><strong>Point:</strong> "That which has no part"</li>
+                                <li><strong>Line:</strong> "Breadthless length"</li>
+                                <li><strong>Straight line:</strong> "A line which lies evenly with the points on itself"</li>
+                            </ul>
+                        </div>
+                        
+                        <p>What is a "part"? What does it mean to have or not have a part? What does it mean for something to be "breadthless"? What is a "length"? How can we tell if a line "lies evenly with the points on itself"? This is all abject nonsense! 
+                        These are poetic descriptions, not mathematical definitions; they are essentially <strong>meaningless</strong>! </p>
+                        
+                        <div class="hyperbolic-insight">
+                            <p>
+There's nothing wrong with the English dictionary defining words in terms of other English words—this circular referencing is actually an essential feature of language and one of the reasons Large Language Models exist! But mathematics cannot tolerate such infinite recursion and circular logic.
+Just as we must start with unjustified axioms to avoid infinite recursion in logic, we must also start with <strong>UNDEFINED terms</strong> and specify <em>only</em> their logical relationships.
+</p>
+                        </div>
+                                            </section>
+                    
+                    <section id="formal-approach">
+                        <h2>The Formal Approach to Geometry</h2>
+                        
+                        <div class="historical-note">
+                            <h3>Hilbert's Famous Quote</h3>
+                            <p>Something like: "Take my entire reworking of Euclid's geometry, and replace every instance of 'point', 'line', and 'plane' with 'table', 'chair', and 'beer bottle', and all the LOGIC should remain valid."</p>
+                        </div>
+                        
+                        <p>This quote (even if apocryphal) captures the essence of Hilbert's approach: geometry should be about <em>relationships</em> and <em>logical structure</em>, not about the intuitive meaning of geometric objects.</p>
+                        
+                        <p>In Hilbert's system:</p>
+                        <ul>
+                            <li><strong>Points, lines, and circles</strong> are completely undefined objects</li>
+                            <li><strong>Incidence (when a point lies on a line or circle; when a circle and line intersect, etc, etc)</strong> are undefined relations</li>
+                            <li><strong>Axioms</strong> specify exactly how these objects and relations behave with respect to one-another</li>
+                            <li><strong>Theorems</strong> follow by pure logical deduction from the axioms</li>
+                        </ul>
+                        
+                        <p> There are (at least) two benefits of formalization. The first is that any potential hidden assumptions or logical gaps are immediately revealed and dealt with (as was our primary rationale for working formally). The second is the beautiful generality of the arguments: the same logical structure can potentially apply to many different "models". Let's elaborate on this last point.
+                        
+                        <p>This generality has profound implications for our understanding of geometry. Whatever theorems we prove using only the first four postulates (or their formal analogs) will automatically be valid in <em>any</em> geometry that satisfies those postulates—including hyperbolic geometry; since we never specified exactly what we mean by "point" or "line," our proofs work for any interpretation that satisfies the logical relationships! It's only when we add the fifth postulate (or its negation) that the logical conclusions between Euclidean and non-Euclidean geometries begin to diverge. This reveals why Hilbert's abstract approach is so powerful: by avoiding concrete definitions, we discover which geometric truths are truly universal and which depend on specific assumptions about the nature of space.</p>
+                    </section>
+                    
+                    <section id="lean-formalization">
+                        <h2>Modern Formalization:</h2>
+                        
+                        <p>Here's how we might begin to formalize Euclidean plane geometry as a <span class="keyword">class</span> containing objects and relations:</p>
+                        
+                        <div class="lean-code">
+<span class="keyword">class</span> <span class="type">EuclideanPlane</span> <span class="keyword">where</span><br>
+<span style="padding-left: 20px;"></span>  <span class="function">Pt</span> : <span class="type">Type</span>      <br>
+<span style="padding-left: 20px;"></span>  <span class="function">Line</span> : <span class="type">Type</span>   <br>
+<span style="padding-left: 20px;"></span>  <span class="function">Circ</span> : <span class="type">Type</span>   <br>
+          </div>
+          <p> That is, we begin by declaring that our <span class="type">EuclideanPlane</span> will contain undefined things (<span class="type">Type</span>s) called <span class="function">Pt</span> (Point), <span class="function">Line</span>, and <span class="function">Circ</span> (Circle).</p>
+          <p> Let's add some primitive relations:</p>
+
+              <div class="lean-code">
+<span style="padding-left: 20px;"></span>  <span class="function">Pt_on_Line</span> : <span class="type">Pt</span> → <span class="type">Line</span> → <span class="type">Prop</span><br>
+          </div>
+          <p> That is,   <span class="function">Pt_on_Line</span> is a <em>function</em> which takes a <span class="type">Pt</span> and then a  <span class="type">Line</span>, and then returns True or False; obviously this is meant to represent incidence, determining whether the given point lies on the line or not. </p>  
+          <p> Lets add a few more: </p>  
+  
+              <div class="lean-code">
+ <span style="padding-left: 20px;"></span> <span class="function">Pt_on_Circ</span> : <span class="type">Pt</span> → <span class="type">Circ</span> → <span class="type">Prop</span><br>
+<span style="padding-left: 20px;"></span>  <span class="function">Center_of_Circ</span> : <span class="type">Pt</span> → <span class="type">Circ</span> → <span class="type">Prop</span>
+          </div>
+          <p> Of course these functions are meant to represent whether a given point is on a circle, and whether the point is the center of the circle. (But as they currently stand, they are completely meaningless, just abstract functions! We'll need more axioms to disambiguate how they behave...) </p>    
+
+          <p> Here's the formal statement of Postulate 1, that given any two points, there exists a line passing through both. The mathematical symbol <span class="lean-text">∀</span> means "for all", and the symbol <span class="lean-text">∃</span> means "there exists".</p>    
+
+              <div class="lean-code">
+<span style="padding-left: 20px;"></span>  <span class="function">Line_of_Pts</span> : ∀ (a b : <span class="type">Pt</span>), ∃ (L : <span class="type">Line</span>), <br>
+<span style="padding-left: 20px;"><span style="padding-left: 20px;">    (<span class="function">Pt_on_Line</span> a L) ∧ (<span class="function">Pt_on_Line</span> b L)
+          </div>
+  
+  <p>In natural language, this says that, for any pair of points <span class="lean-text">a</span> and <span class="lean-text">b</span>, there exists some line <span class="lean-text">L</span> so that both <span class="lean-text">a</span> and <span class="lean-text">b</span> lie on it.</p>
+  
+  <p>Euclid's second Postulate was that, given a finite line segment (drawn on a finite piece of paper), it can be extended (by straightedge and compass) as much as necessary, in either direction. Since we are doing purely abstract formal geometry, we need not confine ourselves to finite pieces of paper. So let's do away with segments altogether (notice we didn't make a primitive for them! All our "Line"s are already infinite in both directions). Then we can likewise do away with Postulate 2. </p>
+  
+<p>Euclid's Postulate 3 says that, given two points, one can create a line which has the first as its center and passing through the second. Can you already see how to write this formally?</p>
+
+<div style="text-align: center; margin: 15px 0;">
+    <button id="reveal-postulate3-btn" style="
+        background-color: #3498db;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    " onmouseover="this.style.backgroundColor='#2980b9'" 
+       onmouseout="this.style.backgroundColor='#3498db'">
+        Show the formal version
+    </button>
+</div>
+
+<div id="postulate3-formal" style="display: none;">
+    <div class="lean-code">
+<span style="padding-left: 20px;"></span>  <span class="function">Circ_of_Pts</span> : ∀ a b : <span class="type">Pt</span>, ∃ α : <span class="type">Circ</span>, <br>
+<span style="padding-left: 20px;"></span><span style="padding-left: 20px;"></span>    (<span class="function">Center_of_Circ</span> a α) ∧ (<span class="function">Pt_on_Circ</span> b α)    
+    </div>
+</div>                        
+                        
+                        <div class="historical-note">
+                            <h3>Looking Forward</h3>
+                            <p>In the next Lecture, we will continue filling out the axioms, until we've successfully and purely formally proved Euclid's Proposition I.1.</p>
+                        </div>
+                        
+                    </section>
+                    
+                </main>
+            </div>
+        </div>
+        
+        <!-- Resizable divider -->
+        <div class="divider" id="divider"></div>
+        
+        <!-- Bottom pane with fixed Lean frame -->
+        <div class="bottom-pane" id="bottom-pane">
+            <!-- iframe will be inserted here when needed -->
+        </div>
+    </div>
+
+    <script>
+
+// === REVEAL ERROR FUNCTIONALITY ===
+document.addEventListener('DOMContentLoaded', function() {
+    const revealBtn = document.getElementById('reveal-error-btn');
+    const errorExplanation = document.getElementById('error-explanation');
+    const gapExplanation = document.getElementById('gap-explanation');
+    const arrowContainer = document.getElementById('arrowContainer');
+    let isRevealed = false;
+    
+    if (revealBtn) {
+        revealBtn.addEventListener('click', function() {
+            if (!isRevealed) {
+                showArrowToStep5();
+                revealBtn.textContent = 'Hide the error';
+                errorExplanation.style.display = 'block';
+                if (gapExplanation) gapExplanation.style.display = 'block';
+                isRevealed = true;
+            } else {
+                hideArrow();
+                revealBtn.textContent = 'Show me where the error is!';
+                errorExplanation.style.display = 'none';
+                if (gapExplanation) gapExplanation.style.display = 'none';
+                isRevealed = false;
+            }
+        });
+    }
+    
+    
+function showArrowToStep5() {
+    // Clear any existing arrows
+    arrowContainer.innerHTML = '';
+    
+// Find step 5 specifically in the Euclid I.1 proof section
+// Look for proof steps in the section that contains the GeoGebra iframe
+const euclidSection = document.querySelector('iframe[src*="p3jzs8x7"]').closest('section');
+const proofSteps = euclidSection.querySelectorAll('.proof-step');
+const step5 = proofSteps[4]; // Step 5 is index 4 within the Euclid proof    
+
+    if (!step5) {
+        console.log('Step 5 not found');
+        return;
+    }
+    
+    // Highlight step 5
+    step5.style.backgroundColor = '#ffe6e6';
+    step5.style.border = '2px solid #dc3545';
+    step5.style.animation = 'pulse 2s infinite';
+    step5.id = 'highlighted-step';
+    
+    // Check if step 5 is visible in viewport
+    const step5Rect = step5.getBoundingClientRect();
+    const isVisible = step5Rect.top >= 0 && step5Rect.bottom <= window.innerHeight;
+    
+    if (!isVisible) {
+        // Scroll step 5 to the top of the page
+        step5.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Wait for scroll to complete, then draw arrow
+        setTimeout(() => {
+            drawArrowToStep5();
+        }, 800); // Wait for smooth scroll to finish
+    } else {
+        // Step 5 is already visible, draw arrow immediately
+        drawArrowToStep5();
+    }
+}
+
+
+function drawArrowToStep5(animate = true) {
+    // Clear any existing arrows
+    arrowContainer.innerHTML = '';
+    
+    const step5 = document.getElementById('highlighted-step');
+    if (!step5) return;
+    
+    function createArrow(shouldAnimate = false) {
+        // Clear previous arrow
+        arrowContainer.innerHTML = '';
+        
+        // Get fresh positions
+        const buttonRect = revealBtn.getBoundingClientRect();
+        const step5Rect = step5.getBoundingClientRect();
+        
+        const startX = buttonRect.left + buttonRect.width / 2;
+        const startY = buttonRect.top;
+        
+        const endX = step5Rect.left + step5Rect.width * 0.55;
+        const endY = step5Rect.top + step5Rect.height / 2;
+        
+        // Only draw if both elements are visible
+        if (startY < 0 || endY < 0 || startY > window.innerHeight || endY > window.innerHeight) {
+            return;
+        }
+        
+        // Create control points for upward curve with upward-pointing arrowhead
+        const controlX1 = startX - 80;
+        const controlY1 = startY - 100;
+        const controlX2 = endX;
+        const controlY2 = endY + 50;
+        
+        // Create SVG
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.setAttribute('viewBox', '0 0 ' + window.innerWidth + ' ' + window.innerHeight);
+        svg.classList.add('curvy-arrow');
+        if (!shouldAnimate) svg.classList.add('show'); // Add 'show' immediately if not animating
+        
+        // Create arrowhead marker definition
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
+        marker.setAttribute('id', 'arrowhead-' + Date.now());
+        marker.setAttribute('markerWidth', '10');
+        marker.setAttribute('markerHeight', '7');
+        marker.setAttribute('refX', '9');
+        marker.setAttribute('refY', '3.5');
+        marker.setAttribute('orient', 'auto');
+        
+        const triangle = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        triangle.setAttribute('points', '0 0, 10 3.5, 0 7');
+        triangle.setAttribute('fill', '#dc3545');
+        
+        marker.appendChild(triangle);
+        defs.appendChild(marker);
+        svg.appendChild(defs);
+        
+        // Create the curved path
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const pathData = `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`;
+        path.setAttribute('d', pathData);
+        path.setAttribute('stroke', '#dc3545');
+        path.setAttribute('stroke-width', '3');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('marker-end', `url(#${marker.id})`);
+        
+        if (shouldAnimate) {
+            // Add animation classes only if we should animate
+            path.classList.add('arrow-path');
+            
+            // Calculate path length for proper animation
+            const pathLength = path.getTotalLength();
+            path.style.strokeDasharray = pathLength;
+            path.style.strokeDashoffset = pathLength;
+        }
+        
+        svg.appendChild(path);
+        arrowContainer.appendChild(svg);
+        
+        // Trigger animation only if requested
+        if (shouldAnimate) {
+            setTimeout(() => {
+                svg.classList.add('show');
+            }, 10);
+        }
+    }
+    
+    // Create initial arrow with animation
+    createArrow(animate);
+    
+    // Find the actual scrolling container
+    const scrollContainer = document.querySelector('.content-scroll');
+    
+    // Redraw arrow on scroll WITHOUT animation
+    let scrollTimeout;
+    function onScroll() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => createArrow(false), 10); // false = no animation
+    }
+    
+    // Add scroll listener to the correct container
+    scrollContainer.addEventListener('scroll', onScroll);
+    
+    // Store the scroll listener so we can remove it later
+    arrowContainer.scrollListener = onScroll;
+    arrowContainer.scrollContainer = scrollContainer;
+}
+
+    
+function hideArrow() {
+    // Remove scroll listener from the correct container
+    if (arrowContainer.scrollListener && arrowContainer.scrollContainer) {
+        arrowContainer.scrollContainer.removeEventListener('scroll', arrowContainer.scrollListener);
+        arrowContainer.scrollListener = null;
+        arrowContainer.scrollContainer = null;
+    }
+    
+    // Clear arrows
+    arrowContainer.innerHTML = '';
+    
+    // Remove highlighting from step 5
+    const highlightedStep = document.getElementById('highlighted-step');
+    if (highlightedStep) {
+        highlightedStep.style.backgroundColor = '';
+        highlightedStep.style.border = '';
+        highlightedStep.style.animation = '';
+        highlightedStep.removeAttribute('id');
+    }
+}
+});
+
+
+// === REVEAL POSTULATE 3 FUNCTIONALITY ===
+document.addEventListener('DOMContentLoaded', function() {
+    const revealBtn = document.getElementById('reveal-postulate3-btn');
+    const formalCode = document.getElementById('postulate3-formal');
+    
+    if (revealBtn && formalCode) {
+        revealBtn.addEventListener('click', function() {
+            if (formalCode.style.display === 'none') {
+                formalCode.style.display = 'block';
+                revealBtn.textContent = 'Hide the formal version';
+            } else {
+                formalCode.style.display = 'none';
+                revealBtn.textContent = 'Show the formal version';
+            }
+        });
+    }
+});
+        
+        // === DIVIDER FUNCTIONALITY ===
+        const divider = document.getElementById('divider');
+        const topPane = document.querySelector('.top-pane');
+        const bottomPane = document.getElementById('bottom-pane');
+        const container = document.querySelector('.split-container');
+        
+        let isDragging = false;
+        
+        divider.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+            e.preventDefault();
+            document.body.style.userSelect = 'none';
+        });
+        
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+            
+            const containerRect = container.getBoundingClientRect();
+            const containerHeight = containerRect.height;
+            const yPos = e.clientY - containerRect.top;
+            const percentage = Math.max(20, Math.min(80, (yPos / containerHeight) * 100));
+            
+            topPane.style.flex = 'none';
+            topPane.style.height = `${percentage}%`;
+            bottomPane.style.height = `${100 - percentage}%`;
+        }
+        
+        function handleMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.body.style.userSelect = '';
+        }
+        
+        // === MATHJAX CONFIGURATION ===
+        window.MathJax = {
+            tex: {
+inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$', '$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+        
+        // Force scroll to top after everything loads
+        window.addEventListener('load', function() {
+            const contentScroll = document.querySelector('.content-scroll');
+            if (contentScroll) {
+                contentScroll.scrollTop = 0;
+            }
+            window.scrollTo(0, 0);
+        });
+    </script>
+    
+</body>
+</html>

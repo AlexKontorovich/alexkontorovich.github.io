@@ -371,9 +371,11 @@
                     <li><a href="#recall">Recall: Euclid's Postulates</a></li>
                     <li><a href="#proposition1">Proposition I.1</a></li>
                     <li><a href="#proof-construction">The Construction</a></li>
-                    <li><a href="#parallel-postulate">The Parallel Postulate Problem</a></li>
-                    <li><a href="#non-euclidean">Non-Euclidean Geometry</a></li>
-                    <li><a href="#platonic-intro">Platonic Solids Introduction</a></li>
+                    <li><a href="#elements-overview">Overview of the Elements</a></li>
+                    <li><a href="#book1-arc">Book I: From Triangle to Square</a></li>
+                    <li><a href="#pythagorean">The Pythagorean Theorem</a></li>
+                    <li><a href="#elements-finale">The Elements' Grand Finale</a></li>
+                    <li><a href="#platonic-intro">What Are Platonic Solids?</a></li>
                     <li><a href="#triangular-cases">Triangular Cases</a></li>
                     <li><a href="#square-cases">Square Cases</a></li>
                     <li><a href="#pentagon-cases">Pentagon Cases</a></li>
@@ -437,7 +439,7 @@
                         
                         <div class="geogebra-container">
                             <h4>Interactive Construction</h4>
-                            <iframe src="https://www.geogebra.org/calculator/p3jzs8x7?embed" 
+                            <iframe src="https://www.geogebra.org/calculator/yyskjrfc?embed" 
                                     width="700" height="450" 
                                     allowfullscreen 
                                     style="border: 1px solid #e3e3e3;">
@@ -505,8 +507,106 @@
                         <p><strong>QED</strong> - We have successfully constructed an equilateral triangle using only Euclid's postulates!</p>
                     </section>
                     
+                    <section id="elements-overview">
+                        <h2>A Global Overview of Euclid's Elements</h2>
+                        
+                        <p>Now that we've seen Euclid's very first proposition, let's step back and appreciate the magnificent architecture of his entire work. The <em>Elements</em> consists of thirteen books, and like any great piece of literature or music, it has a carefully planned structure with dramatic high points and a stunning finale.</p>
+                        
+                        <div class="historical-note">
+                            <h3>The Grand Design</h3>
+                            <p>Euclid didn't just randomly collect geometric facts. Every proposition is strategically placed, building the tools needed for increasingly sophisticated results. It's like watching a master craftsman who starts with simple tools and gradually builds up to creating masterpieces.</p>
+                        </div>
+                    </section>
+                    
+                    <section id="book1-arc">
+                        <h2>Book I: The Journey from Triangle to Square</h2>
+                        
+                        <p>Book I tells a remarkable story. It begins with the humblest possible construction—making a triangle from two points—and culminates with one of the most famous theorems in all of mathematics.</p>
+                        
+                        <p><strong>The opening move:</strong> Proposition I.1 constructs an equilateral triangle. We start with just two points and create our first geometric object.</p>
+                        
+                        <p><strong>The crucial stepping stone:</strong> By Proposition I.46, Euclid has built up enough machinery to tackle a much more sophisticated challenge—constructing a square on a given line segment.</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>Proposition I.46</h4>
+                            <p><strong>Statement:</strong> <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/propI46.html" target="_blank">To describe a square on a given straight line.</a></p>
+                            <p>This might seem like a simple task, but think about it: Euclid must prove that his construction actually creates four equal sides and four right angles, using only the postulates and previously proven propositions!</p>
+                        </div>
+                        
+                        <p><strong>But why does Euclid need to construct squares?</strong> Because he's building toward his masterpiece...</p>
+                    </section>
+                    
+                    <section id="pythagorean">
+                        <h2>The Pythagorean Theorem: Euclid's Masterpiece</h2>
+                        
+                        <p>Book I culminates with Proposition I.47—Euclid's version of the Pythagorean theorem. But here's what's fascinating: Euclid's statement is <em>not</em> the algebraic formula \(a^2 + b^2 = c^2\) that we learn in school!</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>Proposition I.47: The Pythagorean Theorem</h4>
+                            <p><strong>Euclid's statement:</strong> <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/propI47.html" target="_blank">"In right-angled triangles the square on the side subtending the right angle is equal to the squares on the sides containing the right angle."</a></p>
+                            
+                            <p><strong>In modern terms:</strong> If we have a right triangle with legs of lengths \(a\) and \(b\), and hypotenuse of length \(c\), then the <em>area</em> of the square built on the hypotenuse equals the sum of the <em>areas</em> of the squares built on the two legs.</p>
+                            
+                            <p><strong>Mathematical statement:</strong> \(\text{Area}(C) = \text{Area}(A) + \text{Area}(B)\)</p>
+                            <p>where \(A\), \(B\), and \(C\) are the actual geometric squares constructed on the sides of the triangle.</p>
+                        </div>
+                        
+                        <p>This is why Proposition I.46 was essential! Euclid needed to prove he could construct squares before he could talk about their areas. For Euclid, the Pythagorean theorem is fundamentally about <strong>geometry and areas</strong>, not about numerical relationships between lengths.</p>
+                        
+                        <p>The beauty doesn't stop there. Immediately following his proof, Euclid gives us:</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>Proposition I.48: The Converse</h4>
+                            <p><strong>Statement:</strong> <a href="http://aleph0.clarku.edu/~djoyce/java/elements/bookI/propI48.html" target="_blank">"If in a triangle the square on one of the sides is equal to the squares on the remaining two sides of the triangle, the angle contained by the remaining two sides of the triangle is right."</a></p>
+                            <p>In other words: if the area relationship holds, then the triangle <em>must</em> have a right angle.</p>
+                        </div>
+                        
+                        <p>With these two propositions, Euclid completely characterizes right triangles in terms of the areas of squares on their sides.</p>
+                    </section>
+                    
+                    <section id="elements-finale">
+                        <h2>The Elements' Grand Finale</h2>
+                        
+                        <p>If Book I ends with the Pythagorean theorem, what could possibly serve as the finale for all thirteen books of the <em>Elements</em>?</p>
+                        
+                        <p>Euclid saves his most spectacular result for last. The final propositions of Book XIII accomplish something that seems almost impossible: they provide a complete classification of the <strong>regular solids</strong>—three-dimensional shapes with perfect symmetry.</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>The Final Achievement</h4>
+                            <p>Book XIII culminates with the construction of all five Platonic solids and—crucially—the proof that <em>these five are the only ones possible</em>.</p>
+                            <p>Think about this: Euclid doesn't just show how to build these beautiful objects; he proves that his list is complete. No matter how creative you are, you cannot find a sixth regular solid!</p>
+                        </div>
+                        
+                        <p>This is mathematics at its most profound. Starting from five simple postulates about drawing lines and circles, Euclid builds up through hundreds of propositions to arrive at a definitive answer to a deep question about the nature of three-dimensional space.</p>
+                        
+                        <p>So what exactly are these mysterious Platonic solids that provide such a fitting finale to the <em>Elements</em>?</p>
+                    </section>
+                    
+                    <section id="platonic-intro">
+                        <h2>What Are Platonic Solids?</h2>
+                        
+                        <p>The Platonic solids represent the ultimate expression of geometric perfection in three dimensions. Just as regular polygons (equilateral triangles, squares, regular pentagons, etc.) represent perfect symmetry in the plane, the Platonic solids represent perfect symmetry in space.</p>
+                        
+                        <div class="definition">
+                            <h4>Definition: Platonic Solid (Regular Polyhedron)</h4>
+                            <p>A Platonic solid is a three-dimensional polyhedron that satisfies three conditions of perfect regularity:</p>
+                            <ul>
+                                <li><strong>All faces are congruent regular polygons:</strong> Every face is exactly the same shape and size</li>
+                                <li><strong>All edges have the same length:</strong> Perfect uniformity in every dimension</li>
+                                <li><strong>All vertices are identical:</strong> The same number of faces meet at each vertex, at the same angles</li>
+                            </ul>
+                            <p>These conditions ensure that the solid "looks the same" from every face, every edge, and every vertex.</p>
+                        </div>
+                        
+                        <p>The natural question—and the one that provides such a satisfying conclusion to the <em>Elements</em>—is: <strong>How many such perfect solids exist?</strong></p>
+                        
+                        <p>Unlike the infinite family of regular polygons (triangle, square, pentagon, hexagon, ...), the answer for three-dimensional solids is finite and small. Let's discover why by examining each possibility systematically.</p>
+                        
+                        <p>The key insight is that we need to consider how many regular polygons can meet at a single vertex without causing the surface to fold in on itself or become flat.</p>
+                    </section>
+                    
                     <section id="parallel-postulate">
-                        <h2>The Parallel Postulate Problem</h2>
+                        <h2>A Brief Aside: The Parallel Postulate Problem</h2>
                         
                         <div class="historical-note">
                             <h3>Fast Forward 2000 Years...</h3>
@@ -517,13 +617,7 @@
                         
                         <p>Their strategy was to prove a cascade of increasingly bizarre consequences, hoping that eventually they would arrive at a logical contradiction that would prove the parallel postulate must be true.</p>
                         
-                        <p><strong>Plot twist:</strong> They never found a definitive contradiction! Instead, they discovered a consistent alternative geometry with some very strange properties.</p>
-                    </section>
-                    
-                    <section id="non-euclidean">
-                        <h2>Non-Euclidean Geometry</h2>
-                        
-                        <p>In these alternative geometries, mathematicians proved some truly surprising results. For example:</p>
+                        <p><strong>Plot twist:</strong> They never found a definitive contradiction! Instead, they discovered consistent alternative geometries with some very strange properties.</p>
                         
                         <div class="homework">
                             <h4>Example from Hyperbolic Geometry</h4>
@@ -533,24 +627,8 @@
                         </div>
                         
                         <p>The discovery of consistent non-Euclidean geometries was one of the most revolutionary developments in mathematics, showing that Euclid's geometry, while useful, is not the only possible way to understand space.</p>
-                    </section>
-                    
-                    <section id="platonic-intro">
-                        <h2>A Slight Detour: Platonic Solids</h2>
                         
-                        <p>Let's explore a fascinating classification problem in three-dimensional geometry. We want to find all possible "Platonic solids"—three-dimensional shapes that mimic the "perfect" symmetry of regular polygons.</p>
-                        
-                        <div class="definition">
-                            <h4>Definition: Platonic Solid</h4>
-                            <p>A Platonic solid is a three-dimensional polyhedron where:</p>
-                            <ul>
-                                <li>All faces are the same regular polygon</li>
-                                <li>All edges have the same length</li>
-                                <li>All vertices look exactly the same (same number of faces meeting at each vertex)</li>
-                            </ul>
-                        </div>
-                        
-                        <p>The question is: <strong>How many such solids exist?</strong> Let's systematically examine each possibility.</p>
+                        <p>But let's return to our main story: the classification of perfect solids.</p>
                     </section>
                     
                     <section id="triangular-cases">
@@ -694,4 +772,150 @@
                         
                         <div class="impossible-case">
                             <h4>Case 1: Three Hexagons at Each Vertex</h4>
-                            <p
+                            <p><strong>Result:</strong> Impossible as a 3D solid!</p>
+                            <p>Three hexagons would create 3 × 120° = 360°, which lies completely flat and tiles the plane (like a honeycomb pattern).</p>
+                            
+                            <div class="image-container">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hexagonal_tiling_uniform_coloring_1.png/320px-Hexagonal_tiling_uniform_coloring_1.png" 
+                                     alt="Hexagonal tiling of the plane" 
+                                     width="400">
+                                <p><em>Three hexagons around a vertex create a flat honeycomb tiling</em></p>
+                            </div>
+                        </div>
+                        
+                        <div class="impossible-case">
+                            <h4>Case 2: Heptagons and Beyond</h4>
+                            <p><strong>Result:</strong> All impossible in ordinary 3D space!</p>
+                            <p>For any regular \(n\)-gon with \(n \geq 7\), the interior angles are too large. Even three such polygons meeting at a vertex would exceed 360°, which cannot exist in flat three-dimensional space.</p>
+                            <p>For example, a regular heptagon (7-sided polygon) has interior angles of \(\frac{(7-2) \times 180°}{7} = \frac{900°}{7} \approx 128.6°\). Just three such angles would give us about 385.8° > 360°.</p>
+                        </div>
+                        
+                        <p><strong>Conclusion for hexagons and beyond:</strong> No Platonic solids can be formed using hexagons or any larger regular polygons.</p>
+                    </section>
+                    
+                    <section id="classification">
+                        <h2>The Complete Classification</h2>
+                        
+                        <p>Let's summarize our systematic investigation:</p>
+                        
+                        <div class="theorem-proof">
+                            <h4>The Five Platonic Solids</h4>
+                            
+                            <p><strong>Using Triangular Faces:</strong></p>
+                            <ul>
+                                <li><strong>Tetrahedron:</strong> 3 triangles at each vertex → 4 faces</li>
+                                <li><strong>Octahedron:</strong> 4 triangles at each vertex → 8 faces</li>
+                                <li><strong>Icosahedron:</strong> 5 triangles at each vertex → 20 faces</li>
+                            </ul>
+                            
+                            <p><strong>Using Square Faces:</strong></p>
+                            <ul>
+                                <li><strong>Cube:</strong> 3 squares at each vertex → 6 faces</li>
+                            </ul>
+                            
+                            <p><strong>Using Pentagonal Faces:</strong></p>
+                            <ul>
+                                <li><strong>Dodecahedron:</strong> 3 pentagons at each vertex → 12 faces</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="image-container">
+                            <h4>The Complete Family</h4>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Platonic_solids2.svg/640px-Platonic_solids2.svg.png" 
+                                 alt="All five Platonic solids" 
+                                 width="600">
+                            <p><em>The five Platonic solids: tetrahedron, cube, octahedron, dodecahedron, and icosahedron</em></p>
+                        </div>
+                        
+                        <div class="historical-note">
+                            <h3>The Remarkable Conclusion</h3>
+                            <p><strong>These five are the only regular polyhedra that can exist in three-dimensional space.</strong></p>
+                            <p>This is one of the most beautiful classification theorems in mathematics. Unlike regular polygons (which form an infinite family), regular polyhedra form a finite family of exactly five members.</p>
+                            <p>No matter how creative or persistent you are, you cannot discover a sixth Platonic solid. The mathematics simply won't allow it.</p>
+                        </div>
+                        
+                        <p>This classification was known to the ancient Greeks and provides a fitting culmination to Euclid's <em>Elements</em>. Starting from five simple postulates about points, lines, and circles, we can build up enough mathematical machinery to completely solve this deep question about the nature of three-dimensional space.</p>
+                        
+                        <p>The proof that these five solids exhaust all possibilities demonstrates the power of systematic mathematical reasoning. By carefully analyzing the constraints imposed by geometry—specifically, the requirement that the angles around each vertex must sum to less than 360°—we can definitively answer a question that might seem impossibly complex.</p>
+                        
+                        <div class="homework">
+                            <h4>Looking Ahead</h4>
+                            <p>In our next lecture, we'll explore how Euclid builds up the tools needed for these sophisticated constructions, starting with fundamental concepts like congruence, parallel lines, and the properties that make geometric reasoning possible.</p>
+                            <p><strong>Assignment:</strong> Try to imagine what other conditions might be necessary to prove that we can actually construct these five solids using compass and straightedge. What additional geometric facts beyond our angle calculations would Euclid need to establish?</p>
+                        </div>
+                    </section>
+                    
+                </main>
+            </div>
+        </div>
+        
+        <!-- Resizable divider -->
+        <div class="divider" id="divider"></div>
+        
+        <!-- Bottom pane with fixed Lean frame -->
+        <div class="bottom-pane" id="bottom-pane">
+            <!-- iframe will be inserted here when button is clicked -->
+        </div>
+    </div>
+    
+    <script>
+        // === DIVIDER FUNCTIONALITY ===
+        const divider = document.getElementById('divider');
+        const topPane = document.querySelector('.top-pane');
+        const bottomPane = document.getElementById('bottom-pane');
+        const container = document.querySelector('.split-container');
+        
+        let isDragging = false;
+        
+        divider.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+            e.preventDefault();
+            document.body.style.userSelect = 'none';
+        });
+        
+        function handleMouseMove(e) {
+            if (!isDragging) return;
+            
+            const containerRect = container.getBoundingClientRect();
+            const containerHeight = containerRect.height;
+            const yPos = e.clientY - containerRect.top;
+            const percentage = Math.max(20, Math.min(80, (yPos / containerHeight) * 100));
+            
+            topPane.style.flex = 'none';
+            topPane.style.height = `${percentage}%`;
+            bottomPane.style.height = `${100 - percentage}%`;
+        }
+        
+        function handleMouseUp() {
+            isDragging = false;
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.body.style.userSelect = '';
+        }
+        
+        // === MATHJAX CONFIGURATION ===
+        window.MathJax = {
+            tex: {
+                inlineMath: [[', '], ['\\(', '\\)']],
+                displayMath: [['$', '$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+        
+        // Force scroll to top after everything loads
+        window.addEventListener('load', function() {
+            const contentScroll = document.querySelector('.content-scroll');
+            if (contentScroll) {
+                contentScroll.scrollTop = 0;
+            }
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>

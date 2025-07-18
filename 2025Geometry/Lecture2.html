@@ -627,11 +627,10 @@
                             <p>Think of this as two square pyramids glued together at their bases, but with triangular faces.</p>
                             
                             <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Octahedron.svg/240px-Octahedron.svg.png" 
-                                     alt="Octahedron - eight triangular faces" 
-                                     width="300">
-                                <p><em>The octahedron: 8 triangular faces, 12 edges, 6 vertices</em></p>
-                            </div>
+    <h4>Interactive Octahedron</h4>
+    <div id="octahedron-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • The octahedron: 8 triangular faces, 12 edges, 6 vertices</em></p>
+</div>
                         </div>
                         
                         <div class="platonic-solid">
@@ -874,7 +873,7 @@ function createTetrahedron() {
     container.appendChild(renderer.domElement);
     
     // Create tetrahedron
-    const geometry = new THREE.TetrahedronGeometry(2.2);
+    const geometry = new THREE.TetrahedronGeometry(3.0);
     const material = new THREE.MeshPhongMaterial({ 
         color: 0x4169e1,
         transparent: true,
@@ -939,8 +938,92 @@ function createTetrahedron() {
     animate();
 }
 
+// Create interactive octahedron
+function createOctahedron() {
+    const container = document.getElementById('octahedron-3d');
+    if (!container) return;
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+    
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create octahedron
+    const geometry = new THREE.OctahedronGeometry(1.8);
+    const material = new THREE.MeshPhongMaterial({ 
+        color: 0xe74c3c,
+        transparent: true,
+        opacity: 0.8,
+        shininess: 100
+    });
+    const octahedron = new THREE.Mesh(geometry, material);
+    
+    // Add wireframe
+    const wireframe = new THREE.WireframeGeometry(geometry);
+    const wireframeMaterial = new THREE.LineBasicMaterial({ color: 0x2c3e50, linewidth: 2 });
+    const wireframeMesh = new THREE.LineSegments(wireframe, wireframeMaterial);
+    
+    scene.add(octahedron);
+    scene.add(wireframeMesh);
+    
+    // Lighting
+    const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    light1.position.set(1, 1, 1);
+    scene.add(light1);
+    
+    const light2 = new THREE.AmbientLight(0x404040, 0.4);
+    scene.add(light2);
+    
+    camera.position.set(2, 2, 4);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            octahedron.rotation.y += deltaX * 0.01;
+            octahedron.rotation.x += deltaY * 0.01;
+            wireframeMesh.rotation.y += deltaX * 0.01;
+            wireframeMesh.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+    
 // Initialize when page loads
-window.addEventListener('load', createTetrahedron);
+window.addEventListener('load', function() {
+    createTetrahedron();
+    createOctahedron();
+});
+
 </script>
 
     <script>

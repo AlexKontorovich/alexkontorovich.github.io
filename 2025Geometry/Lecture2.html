@@ -650,12 +650,11 @@
                             <p><strong>Result:</strong> Impossible as a 3D solid!</p>
                             <p>Each equilateral triangle has 60° angles at its vertices. Six triangles meeting at a point would create 6 × 60° = 360°, which lies completely flat and creates a tiling of the plane, not a three-dimensional solid.</p>
                             
-                            <div class="image-container">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Triangular_tiling_uniform_coloring_1.png/320px-Triangular_tiling_uniform_coloring_1.png" 
-                                     alt="Triangular tiling of the plane" 
-                                     width="400">
-                                <p><em>Six triangles around a vertex create a flat tiling, not a 3D solid</em></p>
-                            </div>
+                           <div class="image-container">
+    <h4>Interactive Triangular Tiling</h4>
+    <div id="triangular-tiling-3d" style="width: 400px; height: 400px; margin: 0 auto; border: 1px solid #ddd; border-radius: 4px;"></div>
+    <p><em>Click and drag to rotate • Six triangles around each vertex create a flat tiling</em></p>
+</div>
                         </div>
                     
                           <section id="parallel-postulate">
@@ -872,7 +871,7 @@ function createTetrahedron() {
     container.appendChild(renderer.domElement);
     
     // Create tetrahedron
-    const geometry = new THREE.TetrahedronGeometry(2.2);
+    const geometry = new THREE.TetrahedronGeometry(1.5);
     const material = new THREE.MeshPhongMaterial({ 
         color: 0x4169e1,
         transparent: true,
@@ -1096,13 +1095,147 @@ function createIcosahedron() {
     animate();
 }    
 
+// Create interactive triangular tiling
+function createTriangularTiling() {
+    const container = document.getElementById('triangular-tiling-3d');
+    if (!container) return;
+    
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf8f9fa);
+    
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(400, 400);
+    container.appendChild(renderer.domElement);
+    
+    // Create triangular tiling
+    const tilingGroup = new THREE.Group();
+    
+    // Define colors for alternating triangles
+    const colors = [0xffd700, 0xff6b6b, 0x4ecdc4, 0x45b7d1, 0x96ceb4, 0xfeca57];
+    
+    // Create hexagonal pattern of triangles
+    const size = 0.6;
+    const height = size * Math.sqrt(3) / 2;
+    
+    // Generate triangular grid
+    for (let row = -3; row <= 3; row++) {
+        for (let col = -6; col <= 6; col++) {
+            // Calculate position
+            const x = col * size * 1.5;
+            const y = row * height * 2 + (col % 2) * height;
+            
+            // Skip triangles that are too far from center
+            if (Math.sqrt(x*x + y*y) > 3) continue;
+            
+            // Create upward pointing triangle
+            const geometry1 = new THREE.BufferGeometry();
+            const vertices1 = new Float32Array([
+                x, y + height * 2/3, 0,
+                x - size/2, y - height * 1/3, 0,
+                x + size/2, y - height * 1/3, 0
+            ]);
+            geometry1.setAttribute('position', new THREE.BufferAttribute(vertices1, 3));
+            geometry1.computeVertexNormals();
+            
+            const material1 = new THREE.MeshPhongMaterial({ 
+                color: colors[Math.abs((row + col)) % colors.length],
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
+            });
+            const triangle1 = new THREE.Mesh(geometry1, material1);
+            
+            // Create downward pointing triangle
+            const geometry2 = new THREE.BufferGeometry();
+            const vertices2 = new Float32Array([
+                x, y - height * 2/3, 0,
+                x + size/2, y + height * 1/3, 0,
+                x - size/2, y + height * 1/3, 0
+            ]);
+            geometry2.setAttribute('position', new THREE.BufferAttribute(vertices2, 3));
+            geometry2.computeVertexNormals();
+            
+            const material2 = new THREE.MeshPhongMaterial({ 
+                color: colors[Math.abs((row + col + 1)) % colors.length],
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
+            });
+            const triangle2 = new THREE.Mesh(geometry2, material2);
+            
+            tilingGroup.add(triangle1);
+            tilingGroup.add(triangle2);
+            
+            // Add wireframe edges
+            const edges1 = new THREE.EdgesGeometry(geometry1);
+            const wireframe1 = new THREE.LineSegments(edges1, 
+                new THREE.LineBasicMaterial({ color: 0x2c3e50, linewidth: 1 }));
+            const edges2 = new THREE.EdgesGeometry(geometry2);
+            const wireframe2 = new THREE.LineSegments(edges2, 
+                new THREE.LineBasicMaterial({ color: 0x2c3e50, linewidth: 1 }));
+            
+            tilingGroup.add(wireframe1);
+            tilingGroup.add(wireframe2);
+        }
+    }
+    
+    scene.add(tilingGroup);
+    
+    // Lighting
+    const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+    light1.position.set(1, 1, 1);
+    scene.add(light1);
+    
+    const light2 = new THREE.AmbientLight(0x404040, 0.5);
+    scene.add(light2);
+    
+    camera.position.set(0, 0, 6);
+    camera.lookAt(0, 0, 0);
+    
+    // Mouse controls
+    let isDragging = false;
+    let previousMouse = { x: 0, y: 0 };
+    
+    renderer.domElement.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMouse.x = e.clientX;
+        previousMouse.y = e.clientY;
+    });
+    
+    renderer.domElement.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+    
+    renderer.domElement.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            const deltaX = e.clientX - previousMouse.x;
+            const deltaY = e.clientY - previousMouse.y;
+            
+            tilingGroup.rotation.y += deltaX * 0.01;
+            tilingGroup.rotation.x += deltaY * 0.01;
+            
+            previousMouse.x = e.clientX;
+            previousMouse.y = e.clientY;
+        }
+    });
+    
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
+    animate();
+}
+    
 // Initialize when page loads
 window.addEventListener('load', function() {
     createTetrahedron();
     createOctahedron();
     createIcosahedron();
-});
-    
+    createTriangularTiling();
+});    
 </script>
 
     <script>

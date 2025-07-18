@@ -1094,6 +1094,10 @@ function createIcosahedron() {
     }
     animate();
 }    
+
+
+
+
 // Create interactive triangular tiling
 function createTriangularTiling() {
     const container = document.getElementById('triangular-tiling-3d');
@@ -1114,25 +1118,24 @@ function createTriangularTiling() {
     // Define colors for alternating triangles
     const colors = [0xffd700, 0xff6b6b, 0x4ecdc4, 0x45b7d1, 0x96ceb4, 0xfeca57];
     
-    // Triangle parameters
-    const sideLength = 0.8;
-    const height = sideLength * Math.sqrt(3) / 2;
+    // Triangle parameters - using proper equilateral triangle math
+    const sideLength = 0.7;
+    const height = sideLength * Math.sqrt(3) / 2;  // height of equilateral triangle
+    const rowSpacing = height;  // vertical distance between triangle rows
+    const colSpacing = sideLength * 3/4;  // horizontal distance between triangle centers
     
-    // Create proper triangular tiling
-    for (let row = -4; row <= 4; row++) {
-        // Determine how many triangles in this row and starting position
-        const trianglesInRow = 9 - Math.abs(row);
-        const startCol = -Math.floor(trianglesInRow / 2);
-        
-        for (let col = 0; col < trianglesInRow; col++) {
-            const actualCol = startCol + col;
+    // Create hexagonal grid of triangles
+    for (let row = -5; row <= 5; row++) {
+        for (let col = -6; col <= 6; col++) {
+            // Skip triangles too far from center
+            if (Math.sqrt(row*row + col*col) > 5.5) continue;
             
             // Calculate position
-            const x = actualCol * sideLength / 2;
-            const y = row * height;
+            const x = col * colSpacing;
+            const y = row * rowSpacing;
             
-            // Determine if triangle points up or down
-            const pointsUp = (row + actualCol) % 2 === 0;
+            // Determine triangle orientation based on grid position
+            const pointsUp = (row + col) % 2 === 0;
             
             // Create triangle geometry
             const geometry = new THREE.BufferGeometry();
@@ -1141,16 +1144,16 @@ function createTriangularTiling() {
             if (pointsUp) {
                 // Upward pointing triangle
                 vertices = new Float32Array([
-                    x, y + height * 2/3, 0,                    // top vertex
-                    x - sideLength/2, y - height/3, 0,        // bottom left
-                    x + sideLength/2, y - height/3, 0         // bottom right
+                    x, y + height/3, 0,                      // top vertex
+                    x - sideLength/2, y - height/3, 0,       // bottom left
+                    x + sideLength/2, y - height/3, 0        // bottom right
                 ]);
             } else {
                 // Downward pointing triangle
                 vertices = new Float32Array([
-                    x, y - height * 2/3, 0,                   // bottom vertex
-                    x - sideLength/2, y + height/3, 0,        // top left
-                    x + sideLength/2, y + height/3, 0         // top right
+                    x, y - height/3, 0,                      // bottom vertex  
+                    x - sideLength/2, y + height/3, 0,       // top left
+                    x + sideLength/2, y + height/3, 0        // top right
                 ]);
             }
             
@@ -1158,7 +1161,7 @@ function createTriangularTiling() {
             geometry.computeVertexNormals();
             
             const material = new THREE.MeshPhongMaterial({ 
-                color: colors[Math.abs(row + actualCol) % colors.length],
+                color: colors[Math.abs(row + col) % colors.length],
                 transparent: true,
                 opacity: 0.85,
                 side: THREE.DoubleSide

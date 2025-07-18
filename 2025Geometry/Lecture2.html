@@ -439,7 +439,7 @@
                         
                         <div class="geogebra-container">
                             <h4>Interactive Construction</h4>
-                            <iframe src="https://www.geogebra.org/calculator/yyskjrfc?embed" 
+                            <iframe src="https://www.geogebra.org/calculator/p3jzs8x7?embed" 
                                     width="700" height="450" 
                                     allowfullscreen 
                                     style="border: 1px solid #e3e3e3;">
@@ -475,7 +475,7 @@
                             
                             <div class="proof-step">
                                 <div class="statement">5. Let C be a point where the circles intersect</div>
-                                <div class="reason">The circles must intersect (geometric fact)</div>
+                                <div class="reason"></div>
                             </div>
                             
                             <div class="proof-step">
@@ -574,7 +574,7 @@
                         <div class="theorem-proof">
                             <h4>The Final Achievement</h4>
                             <p>Book XIII culminates with the construction of all five Platonic solids and—crucially—the proof that <em>these five are the only ones possible</em>.</p>
-                            <p>Think about this: Euclid doesn't just show how to build these beautiful objects; he proves that his list is complete. No matter how creative you are, you cannot find a sixth regular solid!</p>
+                            <p>Think about this: Euclid doesn't just show how to build these beautiful objects; he proves that his list is complete. No matter how creative you are, how hard you try, and how long you wait, nobody, not even an advanced alien civilization, will ever find a sixth regular solid!</p>
                         </div>
                         
                         <p>This is mathematics at its most profound. Starting from five simple postulates about drawing lines and circles, Euclid builds up through hundreds of propositions to arrive at a definitive answer to a deep question about the nature of three-dimensional space.</p>
@@ -604,33 +604,7 @@
                         
                         <p>The key insight is that we need to consider how many regular polygons can meet at a single vertex without causing the surface to fold in on itself or become flat.</p>
                     </section>
-                    
-                    <section id="parallel-postulate">
-                        <h2>A Brief Aside: The Parallel Postulate Problem</h2>
-                        
-                        <div class="historical-note">
-                            <h3>Fast Forward 2000 Years...</h3>
-                            <p>For over two millennia, mathematicians were deeply bothered by Euclid's fifth postulate. Unlike the first four postulates, it was much longer and didn't seem "self-evident." It felt more like a theorem—a fact that should be proven from more basic principles—rather than a fundamental assumption.</p>
-                        </div>
-                        
-                        <p>In the 19th century, brilliant mathematicians including <strong>Gauss, Lobachevsky, Bolyai, Riemann, and Poincaré</strong> tried a radical approach: they assumed that the fifth postulate was <em>false</em> and attempted to derive a contradiction.</p>
-                        
-                        <p>Their strategy was to prove a cascade of increasingly bizarre consequences, hoping that eventually they would arrive at a logical contradiction that would prove the parallel postulate must be true.</p>
-                        
-                        <p><strong>Plot twist:</strong> They never found a definitive contradiction! Instead, they discovered consistent alternative geometries with some very strange properties.</p>
-                        
-                        <div class="homework">
-                            <h4>Example from Hyperbolic Geometry</h4>
-                            <p><strong>Assumption:</strong> The angles in a triangle always add up to <em>less than</em> 180 degrees.</p>
-                            <p><strong>Surprising consequence:</strong> In this geometry, any pair of triangles with the same three angles must be congruent (exactly the same size and shape)!</p>
-                            <p>This is completely different from Euclidean geometry, where triangles can have the same angles but different sizes (similar but not congruent triangles).</p>
-                        </div>
-                        
-                        <p>The discovery of consistent non-Euclidean geometries was one of the most revolutionary developments in mathematics, showing that Euclid's geometry, while useful, is not the only possible way to understand space.</p>
-                        
-                        <p>But let's return to our main story: the classification of perfect solids.</p>
-                    </section>
-                    
+
                     <section id="triangular-cases">
                         <h2>Cases with Triangular Faces</h2>
                         
@@ -687,6 +661,9 @@
                                 <p><em>Six triangles around a vertex create a flat tiling, not a 3D solid</em></p>
                             </div>
                         </div>
+                    
+                          <section id="parallel-postulate">
+                        <h2>A Brief Aside: Non-Euclidean Geometry</h2>
                         
                         <div class="impossible-case">
                             <h4>Case 5: Seven or More Triangles at Each Vertex</h4>
@@ -701,9 +678,32 @@
                             </div>
                         </div>
                         
-                        <p><strong>Conclusion for triangles:</strong> We get exactly three Platonic solids using triangular faces.</p>
+                        <div class="historical-note">
+                            <h3>Fast Forward 2000 Years...</h3>
+                            <p>For over two millennia, mathematicians were deeply bothered by Euclid's fifth postulate. Unlike the first four postulates, it was much longer and didn't seem "self-evident." It felt more like a theorem—a fact that should be proven from more basic principles—rather than a fundamental assumption.</p>
+                        </div>
+                        
+                        <p>In the 19th century, brilliant mathematicians including <strong>Gauss, Lobachevsky, Bolyai, Riemann, and Poincaré</strong> tried a radical approach: they assumed that the fifth postulate was <em>false</em> and attempted to derive a contradiction.</p>
+                        
+                        <p>Their strategy was to prove a cascade of increasingly bizarre consequences, hoping that eventually they would arrive at a logical contradiction that would prove the parallel postulate must be true.</p>
+                        
+                        <p><strong>Plot twist:</strong> They never found a definitive contradiction! Instead, they discovered consistent alternative geometries with some very strange properties.</p>
+                        
+                        <div class="homework">
+                            <h4>Example from Hyperbolic Geometry</h4>
+                            <p><strong>Assumption:</strong> The angles in a triangle always add up to <em>less than</em> 180 degrees.</p>
+                            <p><strong>Surprising consequence:</strong> In this geometry, any pair of triangles with the same three angles must be congruent (exactly the same size and shape)!</p>
+                            <p>This is completely different from Euclidean geometry, where triangles can have the same angles but different sizes (similar but not congruent triangles).</p>
+                        </div>
+                        
+                        <p>The discovery of consistent non-Euclidean geometries was one of the most revolutionary developments in mathematics, showing that Euclid's geometry, while useful, is not the only possible way to understand space.</p>
+                        
+                        <p>This connects back to our hyperbolic triangle example above: when more than six triangles meet at a vertex, we're no longer in ordinary flat space but in the curved world of hyperbolic geometry.</p>
+                        
+                        <p><strong>Conclusion for triangles in ordinary 3D space:</strong> We get exactly three Platonic solids using triangular faces.</p>
+                        
+                        <p>Now let's return to our main story: the classification of perfect solids in Euclidean space.</p>
                     </section>
-                    
                     <section id="square-cases">
                         <h2>Cases with Square Faces</h2>
                         

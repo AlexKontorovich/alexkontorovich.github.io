@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 4: Continuing to Set Up Formal Euclidean Geometry</title>
+    
+    <!-- Math typesetting with MathJax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="Lectures.css">
+</head>
+<body>
+    <div class="split-container bottom-hidden" id="main-container">
+        <!-- Top pane with scrollable content -->
+        <div class="top-pane">
+            <nav>
+                <a href="index.html" class="back-link" style="display: block; margin-bottom: 15px; text-align: center;">← Back to Course Home</a>
+                <h2>Lecture 4 Contents</h2>
+                <ul>
+                    <li><a href="#review-formalization">Review: Where We Left Off</a></li>
+                    <li><a href="#equilateral-definition">Defining Equilateral Triangles</a></li>
+                    <li><a href="#prop1-statement">Stating Proposition I.1</a></li>
+                    <li><a href="#chess-analogy">The Chess Analogy</a></li>
+                    <li><a href="#lean-interface">Interactive Lean Demo</a></li>
+                    <li><a href="#next-steps">How to Continue?</a></li>
+                </ul>
+            </nav>            
+            <div class="content-scroll">
+                <main>
+                    <h1>Lecture 4: Continuing to Set Up Formal Euclidean Geometry</h1>
+                    <p style="font-size: 1.2em; color: #666; margin-top: -10px; font-style: italic;">
+                        Formal Euclidean Geometry, Prof. Kontorovich<br>
+                        Rutgers Math Corps, Summer 2025
+                    </p>
+                    
+                    <section id="review-formalization">
+                        <h2>Review: Where We Left Off in Lecture 3</h2>
+                        
+                        <p>In our previous lecture, we began the journey toward complete mathematical rigor by setting up a formal axiomatic structure for Euclidean geometry. Let's recall where we left off:</p>
+                        
+                        <div class="lean-code">
+<span class="keyword">class</span> <span class="type">EuclideanPlane</span> <span class="keyword">where</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Pt</span> : <span class="type">Type</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Line</span> : <span class="type">Type</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Circ</span> : <span class="type">Type</span><br>
+<br>
+<span style="padding-left: 20px;"></span><span class="function">Pt_on_Line</span> : <span class="type">Pt</span> → <span class="type">Line</span> → <span class="type">Prop</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Pt_on_Circ</span> : <span class="type">Pt</span> → <span class="type">Circ</span> → <span class="type">Prop</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Center_of_Circ</span> : <span class="type">Pt</span> → <span class="type">Circ</span> → <span class="type">Prop</span><br>
+<br>
+<span style="padding-left: 20px;"></span><span class="function">Line_of_Pts</span> : ∀ a b : <span class="type">Pt</span>, ∃ L : <span class="type">Line</span>, <br>
+<span style="padding-left: 40px;"></span>(<span class="function">Pt_on_Line</span> a L) ∧ (<span class="function">Pt_on_Line</span> b L)<br>
+<br>
+<span style="padding-left: 20px;"></span><span class="function">Circ_of_Pts</span> : ∀ a b : <span class="type">Pt</span>, ∃ α : <span class="type">Circ</span>, <br>
+<span style="padding-left: 40px;"></span>(<span class="function">Center_of_Circ</span> a α) ∧ (<span class="function">Pt_on_Circ</span> b α)
+                        </div>
+<p>Next let's try to state Proposition I.1, the construction of an equilateral triangle, given two points. First we need to define an equilateral triangle. That means we have three points that are equidistant. But we don't yet have a notion of distance! So let's add this to our axioms:</p>
+                        <div class="lean-code">
+                        <span style="padding-left: 20px;"></span><span class="function">dist</span> : <span class="type">Pt</span> → <span class="type">Pt</span> → <span class="type">ℝ</span>
+                        </div>
+                    </section>
+                    
+                    <section id="equilateral-definition">
+                        <h2>Defining Equilateral Triangles</h2>
+                        
+                        <p>Now let's define what we mean by an "equilateral triangle." In our formal system, we can't rely on visual intuition or informal descriptions.</p>
+                                                
+                        <p>The formal syntax for a definition is:</p>
+                        <div class="lean-code">
+<span class="keyword">def</span> DefinitionName (assumptions) : <span class="type">ThingWe'reDefining</span> := DefiningCondition
+                        </div>
+                        
+                        <p>For an equilateral triangle, we want to say that three points form an equilateral triangle if all three sides have equal length. However, due to transitivity of equality (that is, A=B and B=C implies A=C), it's sufficient to check that two pairs of sides are equal:</p>
+                        
+                        <div class="lean-code">
+<span class="keyword">def</span> <span class="function">IsEquilateralTriangle</span> (a b c : <span class="type">Pt</span>) : <span class="type">Prop</span> := <br>
+<span style="padding-left: 20px;"></span>(<span class="function">dist</span> a b = <span class="function">dist</span> b c) ∧ (<span class="function">dist</span> a b = <span class="function">dist</span> a c)
+                        </div>
+                        
+                        <p>Let's break this down:</p>
+                        <ul>
+                            <li><span class="lean-text">a b c : Pt</span> — We take three points as input</li>
+                            <li><span class="lean-text">: Prop</span> — This definition returns a proposition (True or False -- the three points form an equilateral triangle, or not)</li>
+                            <li><span class="lean-text">dist a b = dist b c</span> — The distance from a to b equals the distance from b to c</li>
+                            <li><span class="lean-text">∧</span> — Logical "and"</li>
+                            <li><span class="lean-text">dist a b = dist a c</span> — The distance from a to b equals the distance from a to c</li>
+                        </ul>
+                        
+                        <p>Since equality is transitive, these two conditions will also imply that <span class="lean-text">dist b c = dist a c</span>, so all three sides are equal.</p>
+                    </section>
+                    
+                    <section id="prop1-statement">
+                        <h2>Stating Proposition I.1 Formally</h2>
+                        
+                        <p>Now we can give the formal statement of Euclid's first proposition. Again, the formal syntax is similar to defintions:</p>
+                        
+                        <div class="lean-code">
+<span class="keyword">theorem</span> TheoremName (Assumptions) : Conclusion := <span class="keyword">by</span><br>
+<span style="padding-left: 20px;"></span><span class="comment">Proof</span>
+                        </div>
+                        
+                        <p>Euclid's Proposition I.1 states: "To construct an equilateral triangle on a given finite straight line." In modern terms, this means: given any two points, we can find a third point such that the three points form an equilateral triangle. Here it is:</p>
+                        
+                            <div class="lean-code">
+<span class="keyword">theorem</span> <span class="function">PropI1</span> (a b : <span class="type">Pt</span>) : ∃ (c : <span class="type">Pt</span>), <span class="function">IsEquilateralTriangle</span> a b c := <span class="keyword">by</span>
+                            </div>
+                        
+                        <p>Again let's parse this carefully:</p>
+                        <ul>
+                            <li><span class="lean-text">theorem PropI1</span> — We're stating a theorem called PropI1</li>
+                            <li><span class="lean-text">(a b : Pt)</span> — Given any two points a and b</li>
+                            <li><span class="lean-text">∃ (c : Pt)</span> — There exists a point c</li>
+                            <li><span class="lean-text">IsEquilateralTriangle a b c</span> — Such that a, b, and c form an equilateral triangle</li>
+                            <li><span class="lean-text">:= by</span> — The proof begins here</li>
+                        </ul>
+                        
+                        <p>This is a beautiful translation of Euclid's geometric language into pure logic!</p>
+                    </section>
+
+
+                    
+                    <section id="chess-analogy">
+                        <h2>The Chess Analogy: Why It's Useful to Look at a Chess Board</h2>
+                        
+                        <p>Before we dive into the proof, let me explain why using a computer program like Lean is so valuable for formal mathematics. Think about chess...</p>
+                        
+                        <div class="chess-container">
+                            <div class="chess-board" id="chess-board">
+                                <!-- Chess squares will be generated by JavaScript -->
+                            </div>
+                            <div class="chess-notation">
+                                <div><strong>Chess Game in Algebraic Notation:</strong></div>
+                                <div id="move-1">1. e4 e5</div>
+                                <div id="move-2">2. Nf3 Nf6</div>
+                                <div><br><button class="interactive-button" onclick="animateChess()">▶ Animate Moves</button></div>
+                                <div><button class="interactive-button secondary" onclick="resetChess()">↺ Reset Board</button></div>
+                            </div>
+                        </div>
+                        
+                        <p>I can describe this chess game perfectly using algebraic notation: 1. e4 e5, 2. Nf3 Nf6. This notation is completely precise and unambiguous—any chess player can reconstruct the exact game from these symbols.</p>
+                        
+                        <p>But isn't it much easier and more intuitive to just <em>see</em> the board? When you can visualize the current position, you immediately understand:</p>
+                        <ul>
+                            <li>What pieces are where</li>
+                            <li>What moves are currently legal</li>
+                            <li>What threats and opportunities exist</li>
+                            <li>What the overall strategic situation looks like</li>
+                        </ul>
+                        
+                        <div class="historical-note">
+                            <h3>Formal Proofs vs. Proof Assistants</h3>
+                            <p><strong>Traditional formal proofs</strong> are like chess games written in algebraic notation—completely precise but hard to follow and easy to make mistakes in.</p>
+                            <p><strong>Proof assistants like Lean</strong> are like having a chess board that shows you the current position after each move, making it much easier to see what's happening and plan your next step!</p>
+                        </div>
+                        
+                        <p>In formal mathematics, we still need to provide every logical step (just like chess notation), but Lean acts as our "mathematical chess board"—it shows us the current "goal state" and helps us see exactly what we need to prove next.</p>
+                    </section>
+                    
+                    <section id="lean-interface">
+                        <h2>Interactive Lean Demo: Seeing the Goal State</h2>
+                        
+                        <p>Let's see what happens when we input our axioms, definition, and theorem statement into Lean. Click the button below to see the Lean interface:</p>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <button class="interactive-button" onclick="showLeanInterface()">🖥️ Open Lean Interface</button>
+                            <button class="interactive-button secondary" onclick="hideLeanInterface()">✕ Close Interface</button>
+                        </div>
+                        
+                        <p>When the interface appears, notice the split view:</p>
+                        <ul>
+                            <li><strong>Left panel:</strong> Our Lean code with axioms, definitions, and theorem statement</li>
+                            <li><strong>Right panel:</strong> The current <em>goal state</em>—what Lean is asking us to prove</li>
+                        </ul>
+                        
+                        <p>This goal state is like our chess board—it shows us exactly where we are in the proof and what we need to do next!</p>
+                    </section>
+                    
+                    <section id="next-steps">
+                        <h2>How Should We Continue?</h2>
+                        
+                        <p>Looking at the goal state in Lean, we need to prove:</p>
+                        
+                        <div class="lean-code">
+a b : <span class="type">Pt</span><br>
+⊢ ∃ (c : <span class="type">Pt</span>), <span class="function">IsEquilateralTriangle</span> a b c
+                        </div>
+                        
+                        <p>In other words: given two points a and b, we need to find a point c such that the triangle formed by a, b, and c is equilateral.</p>
+                        
+                        <div class="homework">
+                            <h4>Think About It</h4>
+                            <p>How would you approach this proof? What was Euclid's construction strategy?</p>
+                            <p>Hint: Remember the construction from Lecture 3—we need to create two circles and find their intersection point.</p>
+                        </div>
+                        
+                        <p>But here's the key question: <strong>Do we have enough axioms yet to complete this proof?</strong></p>
+                        
+                        <p>Looking at our current axiom system, we can:</p>
+                        <ul>
+                            <li>Create a line through any two points (Postulate 1)</li>
+                            <li>Create a circle with any center and passing through any point (Postulate 3)</li>
+                            <li>Measure distances between points</li>
+                        </ul>
+                        
+                        <p>But Euclid's construction requires us to find the intersection of two circles. <strong>Do our axioms guarantee that two circles will intersect?</strong></p>
+                        
+                        <p>This is exactly the gap we identified in Lecture 3! We'll need to add more axioms to handle circle intersections before we can complete the proof.</p>
+                        
+                        <div class="historical-note">
+                            <h3>Coming Up in Future Lectures</h3>
+                            <p>In our next lectures, we'll:</p>
+                            <ul>
+                                <li>Add axioms for circle intersection</li>
+                                <li>Complete the formal proof of Proposition I.1</li>
+                                <li>Explore how this approach eliminates the hidden assumptions that plagued Euclid's original proof</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                </main>
+            </div>
+        </div>
+        
+        <!-- Resizable divider -->
+        <div class="divider" id="divider"></div>
+        
+        <!-- Bottom pane with Lean interface -->
+        <div class="bottom-pane" id="bottom-pane">
+            <div class="lean-interface">
+                <div class="lean-code-panel">
+                    <div class="lean-code">
+<span class="keyword">import</span> Mathlib<br>
+<br>
+<span class="keyword">class</span> <span class="type">EuclideanPlane</span> <span class="keyword">where</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Pt</span> : <span class="type">Type</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Line</span> : <span class="type">Type</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Circ</span> : <span class="type">Type</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Pt_on_Line</span> : <span class="type">Pt</span> → <span class="type">Line</span> → <span class="type">Prop</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Pt_on_Circ</span> : <span class="type">Pt</span> → <span class="type">Circ</span> → <span class="type">Prop</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Center_of_Circ</span> : <span class="type">Pt</span> → <span class="type">Circ</span> → <span class="type">Prop</span><br>
+<span style="padding-left: 20px;"></span><span class="function">Line_of_Pts</span> : ∀ a b : <span class="type">Pt</span>, ∃ L : <span class="type">Line</span>,<br>
+<span style="padding-left: 40px;"></span>(<span class="function">Pt_on_Line</span> a L) ∧ (<span class="function">Pt_on_Line</span> b L)<br>
+<span style="padding-left: 20px;"></span><span class="function">Circ_of_Pts</span> : ∀ a b : <span class="type">Pt</span>, ∃ α : <span class="type">Circ</span>,<br>
+<span style="padding-left: 40px;"></span>(<span class="function">Center_of_Circ</span> a α) ∧ (<span class="function">Pt_on_Circ</span> b α)<br>
+<span style="padding-left: 20px;"></span><span class="function">dist</span> : <span class="type">Pt</span> → <span class="type">Pt</span> → <span class="type">ℝ</span><br>
+<br>
+<span class="keyword">variable</span> [<span class="type">EuclideanPlane</span>]<br>
+<br>
+<span class="keyword">def</span> <span class="function">IsEquilateralTriangle</span> (a b c : <span class="type">Pt</span>) : <span class="type">Prop</span> :=<br>
+<span style="padding-left: 20px;"></span>(<span class="function">dist</span> a b = <span class="function">dist</span> b c) ∧ (<span class="function">dist</span> a b = <span class="function">dist</span> a c)<br>
+<br>
+<span class="keyword">theorem</span> <span class="function">PropI1</span> (a b : <span class="type">Pt</span>) : ∃ (c : <span class="type">Pt</span>), <span class="function">IsEquilateralTriangle</span> a b c := <span class="keyword">by</span><br>
+<span style="padding-left: 20px;"></span><span class="keyword">sorry</span>
+                    </div>
+                </div>
+                <div class="lean-goal-panel">
+                    <div class="lean-goal-header">Goal State:</div>
+                    <div class="lean-goal-content">
+                        a b : <span class="type">Pt</span><br>
+                        <span style="color: #9cdcfe;">⊢</span> ∃ (c : <span class="type">Pt</span>), <span class="function">IsEquilateralTriangle</span> a b c<br>
+                        <br>
+                        <div style="color: #6a9955; font-style: italic;">
+                        -- We need to find a point c such that<br>
+                        -- triangle abc is equilateral<br>
+                        -- What construction should we use?
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shared JavaScript -->
+    <script src="Lectures.js"></script>
+</body>
+</html>

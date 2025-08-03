@@ -791,14 +791,14 @@ No! Look at how <em>logically precise</em> Euclid is being everywhere else: Post
     
     <div class="definition">
         <h4>False Positives in Mathematics</h4>
-        <p><strong>Definition:</strong> A theorem that appears to be perfectly well-justified but actually contains hidden gaps or unstated assumptions.</p>
-        <p><strong>Example:</strong> Euclid's Proposition I.1 looks completely rigorous—every step seems to follow logically from the postulates. Yet it contains a critical gap: the assumption that circles intersect without any justification for why this must be true.</p>
+        <p><strong>That is:</strong> A theorem that appears to be perfectly well-justified but actually contains hidden gaps or unstated assumptions.</p>
+        <p><strong>For Example:</strong> Euclid's Proposition I.1 looks completely rigorous—every step seems to follow logically from the postulates. Yet it contains a critical gap: the assumption that circles intersect without any justification for why this must be true.</p>
     </div>
     
     <div class="critical-gap">
         <h4>False Negatives in Mathematics</h4>
-        <p><strong>Definition:</strong> A theorem whose proof appears to contain errors or contradictions, when in fact the reasoning is perfectly sound.</p>
-        <p><strong>Example:</strong> The hyperbolic AAA theorem seems impossible—surely triangles with the same angles can have different sizes! Our intuition screams that something must be wrong with the proof. Yet the mathematics is completely valid; it's our Euclidean intuition that misleads us.</p>
+        <p><strong>That is:</strong> A theorem whose proof appears to contain errors or contradictions, when in fact the reasoning is perfectly sound.</p>
+        <p><strong>For Example:</strong> The hyperbolic AAA theorem seems impossible—surely triangles with the same angles can have different sizes! Our intuition screams that something must be wrong with the proof. Yet the mathematics is completely valid; it's our Euclidean intuition that misleads us.</p>
     </div>
     
 <p>These false positives and false negatives reveal a fundamental problem: <strong>human intuition and visual perception are unreliable guides to mathematical truth!!!</strong> This doesn't mean we should abandon intuition and visualization in our quest to discover universal truths—these remain essential tools for mathematical discovery. But we must also rigorously <strong>verify</strong> our insights within a completely formal system, since mistakes are all too common and all too easy to make!</p>
@@ -812,7 +812,7 @@ No! Look at how <em>logically precise</em> Euclid is being everywhere else: Post
     <div class="theorem-proof">
         <h4>Hilbert's Radical Solution</h4>
         <p><strong>The Problem:</strong> Human perception and intuition systematically mislead mathematical reasoning</p>
-        <p><strong>The Solution:</strong> Remove humanity from mathematics entirely</p>
+        <p><strong>The Solution:</strong> Remove humanity from mathematics entirely!</p>
         <p>If we want mathematics to be truly precise and reliable, we must eliminate human judgment, visual intuition, and "obvious" assumptions. Mathematics must become a purely formal, mechanical process that could be carried out by a machine with no understanding of what the symbols "mean."</p>
     </div>
     
@@ -849,11 +849,11 @@ Just as we must start with unjustified axioms to avoid infinite recursion in log
                         <h2>The Formal Approach to Geometry</h2>
                         
                         <div class="historical-note">
-                            <h3>Hilbert's Famous Quote</h3>
-                            <p>Something like: "Take my entire reworking of Euclid's geometry, and replace every instance of 'point', 'line', and 'plane' with 'table', 'chair', and 'beer bottle', and all the LOGIC should remain valid."</p>
+                            <h3>Hilbert's Famous Quip</h3>
+                            <p>Supposedly, Hilbert said something like: "Take my entire reworking of Euclid's geometry, and replace every instance of 'point', 'line', and 'plane' with 'table', 'chair', and 'beer bottle', and all the LOGIC should remain valid."</p>
                         </div>
                         
-                        <p>This quote (even if apocryphal) captures the essence of Hilbert's approach: geometry should be about <em>relationships</em> and <em>logical structure</em>, not about the intuitive meaning of geometric objects.</p>
+                        <p>This line (even if apocryphal) captures the essence of Hilbert's approach: geometry should be about <em>relationships</em> and <em>logical structure</em>, not about the intuitive meaning of geometric objects.</p>
                         
                         <p>In Hilbert's system:</p>
                         <ul>
@@ -871,7 +871,8 @@ Just as we must start with unjustified axioms to avoid infinite recursion in log
                     <section id="lean-formalization">
                         <h2>Modern Formalization:</h2>
                         
-                        <p>Here's how we might begin to formalize Euclidean plane geometry as a <span class="keyword">class</span> containing objects and relations:</p>
+                        <p>Here's how we might begin to formalize Euclidean plane geometry as a <span class="keyword">class</span> containing primitive (that is, undefined) 
+                            objects and relations:</p>
                         
                         <div class="lean-code">
 <span class="keyword">class</span> <span class="type">EuclideanPlane</span> <span class="keyword">where</span><br>
@@ -879,8 +880,8 @@ Just as we must start with unjustified axioms to avoid infinite recursion in log
 <span style="padding-left: 20px;"></span>  <span class="function">Line</span> : <span class="type">Type</span>   <br>
 <span style="padding-left: 20px;"></span>  <span class="function">Circ</span> : <span class="type">Type</span>   <br>
           </div>
-          <p> That is, we begin by declaring that our <span class="type">EuclideanPlane</span> will contain undefined things (<span class="type">Type</span>s) called <span class="function">Pt</span> (Point), <span class="function">Line</span>, and <span class="function">Circ</span> (Circle).</p>
-          <p> Let's add some primitive relations:</p>
+          <p> Here we began by declaring that our <span class="type">EuclideanPlane</span>  contains undefined things (<span class="type">Type</span>s) called <span class="function">Pt</span> (Point), <span class="function">Line</span>, and <span class="function">Circ</span> (Circle).</p>
+          <p> Now let's add some primitive incidence relations:</p>
 
               <div class="lean-code">
 <span style="padding-left: 20px;"></span>  <span class="function">Pt_on_Line</span> : <span class="type">Pt</span> → <span class="type">Line</span> → <span class="type">Prop</span><br>

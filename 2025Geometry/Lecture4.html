@@ -66,13 +66,8 @@
                         <h2>Defining Equilateral Triangles</h2>
                         
                         <p>Now let's define what we mean by an "equilateral triangle." In our formal system, we can't rely on visual intuition or informal descriptions.</p>
-                                                
-                        <p>The formal syntax for a definition is:</p>
-                        <div class="lean-code">
-<span class="keyword">def</span> DefinitionName (assumptions) : <span class="type">ThingWe'reDefining</span> := DefiningCondition
-                        </div>
                         
-                        <p>For an equilateral triangle, we want to say that three points form an equilateral triangle if all three sides have equal length. However, due to transitivity of equality (that is, A=B and B=C implies A=C), it's sufficient to check that two pairs of sides are equal:</p>
+                        <p>For an equilateral triangle, we want to say that three points form an equilateral triangle if all three sides have equal length. However, due to transitivity of equality (that is, A=B and B=C implies A=C), it's sufficient to check that two pairs of sides are equal. Here's how to write that in Lean:</p>
                         
                         <div class="lean-code">
 <span class="keyword">def</span> <span class="function">IsEquilateralTriangle</span> (a b c : <span class="type">Pt</span>) : <span class="type">Prop</span> := <br>
@@ -82,13 +77,21 @@
                         <p>Let's break this down:</p>
                         <ul>
                             <li><span class="lean-text">a b c : Pt</span> — We take three points as input</li>
-                            <li><span class="lean-text">: Prop</span> — This definition returns a proposition (True or False -- the three points form an equilateral triangle, or not)</li>
+                            <li><span class="lean-text">: Prop</span> — The colon means "and now comes the output type". This definition returns a proposition (True or False -- the three points form an equilateral triangle, or not)</li>
+                            <li><span class="lean-text">:=</span> — What proposition does it return? Here's how you actually define it:</li>
                             <li><span class="lean-text">dist a b = dist b c</span> — The distance from a to b equals the distance from b to c</li>
-                            <li><span class="lean-text">∧</span> — Logical "and"</li>
+                            <li><span class="lean-text">∧</span> — This fancy symbol is mathematicians' shorthand for "and"</li>
                             <li><span class="lean-text">dist a b = dist a c</span> — The distance from a to b equals the distance from a to c</li>
                         </ul>
                         
                         <p>Since equality is transitive, these two conditions will also imply that <span class="lean-text">dist b c = dist a c</span>, so all three sides are equal.</p>
+
+                                                
+                        <p>In general, the formal syntax for a definition is:</p>
+                        <div class="lean-code">
+<span class="keyword">def</span> DefinitionName (assumptions) : <span class="type">ThingWe'reDefining</span> := DefiningCondition
+                        </div>
+                        and the definition above is a special case of this pattern.
                     </section>
                     
                     <section id="prop1-statement">
@@ -109,10 +112,11 @@
                         
                         <p>Again let's parse this carefully:</p>
                         <ul>
-                            <li><span class="lean-text">theorem PropI1</span> — We're stating a theorem called PropI1</li>
+                            <li><span class="lean-text">theorem PropI1</span> — We're stating a theorem called PropI1 (that is, Proposition I.1)</li>
                             <li><span class="lean-text">(a b : Pt)</span> — Given any two points a and b</li>
-                            <li><span class="lean-text">∃ (c : Pt)</span> — There exists a point c</li>
-                            <li><span class="lean-text">IsEquilateralTriangle a b c</span> — Such that a, b, and c form an equilateral triangle</li>
+                            <li><span class="lean-text">:</span> — Here comes the output:</li>
+                            <li><span class="lean-text">∃ (c : Pt)</span> — There exists a point c...</li>
+                            <li><span class="lean-text">IsEquilateralTriangle a b c</span> — ...such that a, b, and c form an equilateral triangle</li>
                             <li><span class="lean-text">:= by</span> — The proof begins here</li>
                         </ul>
                         
@@ -125,7 +129,11 @@
                         <h2>The Chess Analogy: Why It's Useful to Look at a Chess Board</h2>
                         
                         <p>Before we dive into the proof, let me explain why using a computer program like Lean is so valuable for formal mathematics. Think about chess...</p>
+                        <p>I can describe the first few moves in a chess game perfectly using algebraic notation: 1. e4 e5, 2. Nf3 Nf6. This notation is completely precise and unambiguous—any chess player can reconstruct the exact game from these symbols.</p>
                         
+                        <p>But isn't it much easier and more intuitive to just <em>see</em> the board? </p>
+                            
+
                         <div class="chess-container">
                             <div class="chess-board" id="chess-board">
                                 <!-- Chess squares will be generated by JavaScript -->
@@ -139,9 +147,8 @@
                             </div>
                         </div>
                         
-                        <p>I can describe this chess game perfectly using algebraic notation: 1. e4 e5, 2. Nf3 Nf6. This notation is completely precise and unambiguous—any chess player can reconstruct the exact game from these symbols.</p>
-                        
-                        <p>But isn't it much easier and more intuitive to just <em>see</em> the board? When you can visualize the current position, you immediately understand:</p>
+                                                    
+                          <p>  When you can visualize the current position, you immediately understand:</p>
                         <ul>
                             <li>What pieces are where</li>
                             <li>What moves are currently legal</li>
@@ -151,11 +158,11 @@
                         
                         <div class="historical-note">
                             <h3>Formal Proofs vs. Proof Assistants</h3>
-                            <p><strong>Traditional formal proofs</strong> are like chess games written in algebraic notation—completely precise but hard to follow and easy to make mistakes in.</p>
+                            <p><strong>Traditional (natural language) proofs</strong> are like chess games written in algebraic notation—completely precise but hard to follow and easy to make mistakes in.</p>
                             <p><strong>Proof assistants like Lean</strong> are like having a chess board that shows you the current position after each move, making it much easier to see what's happening and plan your next step!</p>
                         </div>
                         
-                        <p>In formal mathematics, we still need to provide every logical step (just like chess notation), but Lean acts as our "mathematical chess board"—it shows us the current "goal state" and helps us see exactly what we need to prove next.</p>
+                        <p>In formal mathematics, we still need to provide every logical step (just like chess notation), but Lean acts as our "mathematical chess board"—it shows us the current "goal state" (game board) and helps us see exactly what we need to prove next.</p>
                     </section>
                     
                     <section id="lean-interface">
@@ -169,6 +176,12 @@
                         </div>
                         
                         <p>When the interface appears, notice the split view:</p>
+
+                                <img src="demo.jpg" 
+                                 alt="Lean infoview" 
+                                 width="500">                        
+                        
+                        
                         <ul>
                             <li><strong>Left panel:</strong> Our Lean code with axioms, definitions, and theorem statement</li>
                             <li><strong>Right panel:</strong> The current <em>goal state</em>—what Lean is asking us to prove</li>
@@ -180,14 +193,17 @@
                     <section id="next-steps">
                         <h2>How Should We Continue?</h2>
                         
-                        <p>Looking at the goal state in Lean, we need to prove:</p>
+                        <p>Here's what the goal state looks like at the start of the proof</p>
                         
                         <div class="lean-code">
 a b : <span class="type">Pt</span><br>
 ⊢ ∃ (c : <span class="type">Pt</span>), <span class="function">IsEquilateralTriangle</span> a b c
                         </div>
+<p>The symbol "⊢" is a "turnstile", meaning "here's the Goal". Lean is just restating to us that it understands the problem we're trying to solve. 
+    It's saying: you shall not pass the turnstile until you give me the point c and a proof that a, b, and c form an equilateral triangle. It's like a mathematical escape room!
+</p>
+<p>So, how can we get out?</p>
                         
-                        <p>In other words: given two points a and b, we need to find a point c such that the triangle formed by a, b, and c is equilateral.</p>
                         
                         <div class="homework">
                             <h4>Think About It</h4>
@@ -205,6 +221,14 @@ a b : <span class="type">Pt</span><br>
                         </ul>
                         
                         <p>But Euclid's construction requires us to find the intersection of two circles. <strong>Do our axioms guarantee that two circles will intersect?</strong></p>
+
+                        <div class="homework">
+                            <h4>Problem</h4>
+                                                    <p>(Just in natural language:) Not every pair of circles actually intersect. What are good, easily statable general conditions 
+                            describing <strong>exactly</strong> when a pair of circles do indeed intersect?
+                        </div>
+
+
                         
                         <p>This is exactly the gap we identified in Lecture 3! We'll need to add more axioms to handle circle intersections before we can complete the proof.</p>
                         

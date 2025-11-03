@@ -67,7 +67,7 @@
                         
                         <p>Now let's define what we mean by an "equilateral triangle." In our formal system, we can't rely on visual intuition or informal descriptions.</p>
                         
-                        <p>For an equilateral triangle, we want to say that three points form an equilateral triangle if all three sides have equal length. However, due to transitivity of equality (that is, A=B and B=C implies A=C), it's sufficient to check that two pairs of sides are equal. Here's how to write that in Lean:</p>
+                        <p>For an equilateral triangle, we want to say that three points form an equilateral triangle if all three sides have equal length. However, due to transitivity of equality (that is, AB=AC and AB=BC implies AC=BC), it's sufficient to check that two pairs of sides are equal. Here's how to write that in Lean:</p>
                         
                         <div class="lean-code">
 <span class="keyword">def</span> <span class="function">IsEquilateralTriangle</span> (a b c : <span class="type">Pt</span>) : <span class="type">Prop</span> := <br>
@@ -76,6 +76,8 @@
                         
                         <p>Let's break this down:</p>
                         <ul>
+                            <li><span class="keyword">def</span> — We are about to make a new definition</li>
+                            <li><span class="function">IsEquilateralTriangle</span> — We will call this definition "IsEquilateralTriangle"</li>
                             <li><span class="lean-text">a b c : Pt</span> — We take three points as input</li>
                             <li><span class="lean-text">: Prop</span> — The colon means "and now comes the output type". This definition returns a proposition (True or False -- the three points form an equilateral triangle, or not)</li>
                             <li><span class="lean-text">:=</span> — What proposition does it return? Here's how you actually define it:</li>

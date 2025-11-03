@@ -106,7 +106,7 @@
 <span style="padding-left: 20px;"></span><span class="comment">Proof</span>
                         </div>
                         
-                        <p>Euclid's Proposition I.1 states: "To construct an equilateral triangle on a given finite straight line." In modern terms, this means: given any two points, we can find a third point such that the three points form an equilateral triangle. Here it is:</p>
+                        <p>Euclid's Proposition I.1 states: "To construct an equilateral triangle on a given finite straight line." In modern terms, this means: given any two points, we can find a third point such that the three points form an equilateral triangle. Here it is in Lean:</p>
                         
                             <div class="lean-code">
 <span class="keyword">theorem</span> <span class="function">PropI1</span> (a b : <span class="type">Pt</span>) : ∃ (c : <span class="type">Pt</span>), <span class="function">IsEquilateralTriangle</span> a b c := <span class="keyword">by</span>

@@ -117,12 +117,43 @@ function resetChess() {
 
 // === LEAN INTERFACE FUNCTIONALITY ===
 
-function showLeanInterface() {
-    const container = document.getElementById('main-container');
-    if (container) {
-        container.classList.remove('bottom-hidden');
-    }
-}
+const divider = document.getElementById('divider');
+const topPane = document.querySelector('.top-pane');
+const bottomPane = document.getElementById('bottom-pane');
+const container = document.querySelector('.split-container');
+
+const toggleButtons = document.querySelectorAll('.toggle-button');
+        
+        // Set up the toggle functionality for all buttons
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Get the Lean code from the data attribute
+                const leanCode = this.getAttribute('data-lean-code');
+                
+                // Toggle the class on the container
+                container.classList.toggle('bottom-hidden');
+                
+                // Update all button texts
+                if (!container.classList.contains('bottom-hidden')) {
+                    
+                    // When showing the editor, reset to default sizes
+                    topPane.style.flex = '1';
+                    topPane.style.height = '';
+                    bottomPane.style.height = '40vh';
+                    
+                    // Create the iframe with the code already preloaded via URL parameter
+                    const iframe = document.createElement('iframe');
+                    iframe.id = 'lean-frame';
+                    iframe.className = 'lean-frame';
+                    iframe.src = `https://live.lean-lang.org/#code=${leanCode}`;
+                    iframe.setAttribute('allow', 'clipboard-read; clipboard-write');
+                    
+                    // Clear the bottom pane and add the iframe
+                    bottomPane.innerHTML = '';
+                    bottomPane.appendChild(iframe);
+                }
+            });
+        });
 
 function hideLeanInterface() {
     const container = document.getElementById('main-container');
